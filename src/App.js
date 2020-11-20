@@ -10,10 +10,11 @@ import SingleShop from "./components/SingleShop";
 function App() {
 　
   const [currentView, setCurrentView] = useState(["Search"]);
+  const {allShops, setAllShops} = useState([]);
 
   useEffect(() => {
-    
-  }, []);
+  setCurrentView("AllShops")
+  }, [allShops]);
 
 
   return (
@@ -24,6 +25,7 @@ function App() {
      {String(currentView).valueOf() === "Search" && (
      <Search
      setCurrentView = {setCurrentView}
+     setAllShops = {setAllShops}
      />
      )}
       {String(currentView).valueOf() === "AllShops" && (

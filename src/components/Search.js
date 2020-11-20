@@ -7,7 +7,7 @@ export default function Search(props) {
     const [area, setArea] = useState("")
     const [freeWord, setFreeWord] = useState("")
 
-    const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=9cba381f3c60076f4d986a0f6ee580b3&freeword=%E7%84%BC%E8%82%89&areacode_l=AREAL2101";
+    const url = "http://localhost:3000/shops?areaCode=AREAS5502&keyword=%E7%84%BC%E8%82%89&exceptWord=%E7%85%99";
 
     const getAllShops = async event => {
         console.log("API呼び出します！");
@@ -19,7 +19,11 @@ export default function Search(props) {
         console.log(freeWord);
 
        const shops = await fetch(url);
-       console.log(shops.body);
+       const data = await shops.json();
+       console.log(data);
+
+       console.log(props.setAllShops);
+      // props.setAllShops(prev =>[...prev, data]);
     }
 
 
@@ -47,7 +51,7 @@ export default function Search(props) {
                 <p> <button type="submit" className="submit-button"
                     onClick={() => {
                         getAllShops()
-                        props.setCurrentView("AllShops")
+                        //props.setCurrentView("AllShops")
                     }
                     }>検索ボタン</button></p>
             </form>
