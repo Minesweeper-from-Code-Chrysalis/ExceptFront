@@ -7,6 +7,7 @@ return (
 <div className ="NavBar">
     <a href="#home" onClick={ () =>{
       props.setCurrentView("Search");
+      props.setAllShops([]);
         }
     } >HOME</a>
 </div>

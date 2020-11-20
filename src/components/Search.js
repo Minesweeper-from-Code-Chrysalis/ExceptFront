@@ -5,9 +5,9 @@ export default function Search(props) {
 
     const [exceptWord, setExceptWord] = useState("")
     const [area, setArea] = useState("")
-    const [freeWord, setFreeWord] = useState("")
+    const [keyword, setKeyword] = useState("")
 
-    const url = "http://localhost:3000/shops?areaCode=AREAS5502&keyword=%E7%84%BC%E8%82%89&exceptWord=%E7%85%99";
+    const baseUrl = "http://localhost:3000/shops";
 
     const getAllShops = async event => {
         console.log("API呼び出します！");
@@ -16,14 +16,28 @@ export default function Search(props) {
         console.log("【エリア】");
         console.log(area);
         console.log("【フリーワード】");
-        console.log(freeWord);
+        console.log(keyword);
 
+        const areaCode = "AREAL2107";
+        let url = baseUrl + "?areaCode="+areaCode;
+
+        if (exceptWord.length > 0){
+            console.log("除外ワード");
+            url = url + "&exceptWord=" + encodeURIComponent(exceptWord)
+        }
+        if (keyword.length > 0){
+            console.log("キーワード");
+            url = url +"&keyword"+encodeURIComponent(keyword)
+        }
+        
+    
+    console.log(url);
        const shops = await fetch(url);
        const data = await shops.json();
        console.log(data);
 
-       console.log(props.setAllShops);
-      // props.setAllShops(prev =>[...prev, data]);
+       //console.log(props.setAllShops);
+      props.setAllShops(prev =>[...prev, data]);
     }
 
 
@@ -46,7 +60,7 @@ export default function Search(props) {
                 <p> フリーワード：<input type="text" className="free-word" label="input3" labelName="free-word" placeholder="フリーワードを入力してください。"
                     onChange={(e) => {
                        // console.log(e.target.value);
-                        setFreeWord(e.target.value);
+                        setKeyword(e.target.value);
                     }} /></p>
                 <p> <button type="submit" className="submit-button"
                     onClick={() => {
