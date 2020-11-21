@@ -6,6 +6,7 @@ export default function SingleShop(props) {
     <div className="single-shop-page">
       <div className="back">
         <a className="back-to-list" onClick={() => {
+          props.setSelectedShop();
           props.setCurrentView("AllShops");
         }}>>>> 一覧に戻る</a>
       </div>

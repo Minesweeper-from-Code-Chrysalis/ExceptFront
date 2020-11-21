@@ -41,6 +41,7 @@ function App() {
       {String(currentView).valueOf() === "SingleShop" && (
         <SingleShop
           selectedShop={selectedShop}
+          setSelectedShop={setSelectedShop}
           setCurrentView={setCurrentView}
         />
       )}

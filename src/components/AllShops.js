@@ -4,6 +4,11 @@ import "../styles/allShops.css";
 export default function AllShops(props) {
 
   const items = [];
+  items.push(
+    <div className="search-result">
+      <a className="search-result-count">検索結果 {props.allShops[0].length}件</a>
+    </div>
+  );
   for (let key in props.allShops[0]) {
     const shop = props.allShops[0][key];
     items.push(
@@ -18,6 +23,8 @@ export default function AllShops(props) {
   }
 
   return (
-    <div>{items}</div>
+    <div className="all-photos">
+      {items}
+    </div>
   );
 }
