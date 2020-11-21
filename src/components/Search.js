@@ -10,7 +10,6 @@ export default function Search(props) {
     const baseUrl = "http://localhost:3001/shops";
 
     const getAllShops = async () => {
-
         let url = baseUrl + "?areaCode=" + areaCode;
 
         if (exceptWord.length > 0) {

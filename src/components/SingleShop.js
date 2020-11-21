@@ -4,6 +4,9 @@ import "../styles/singleShop.css";
 export default function SingleShop(props) {
   return (
     <div>
+      <a href="#allshops" onClick={() => {
+        props.setCurrentView("AllShops");
+      }}>一覧に戻る</a>
       <p>{props.selectedShop.name}</p>
       <p>{props.selectedShop.category}</p>
       <p>{props.selectedShop.opentime}</p>
