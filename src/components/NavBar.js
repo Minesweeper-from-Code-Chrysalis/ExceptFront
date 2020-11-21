@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 
 export default function NavBar(props) {
-
-return (
-<div className ="NavBar">
-    <a href="#home" onClick={ () =>{
-      props.setCurrentView("Search");
-      props.setAllShops([]);
-        }
-    } >HOME</a>
-</div>
-);
+  return (
+    <div className="NavBar">
+      <a href="#home" onClick={() => {
+        props.setAllShops([]);
+        props.setSelectedShop();
+        props.setCurrentView("Search");
+      }}>Home</a>
+    </div>
+  );
 }
