@@ -8,19 +8,32 @@ import SingleShop from "./components/SingleShop";
 
 
 function App() {
-　
   const [currentView, setCurrentView] = useState(["Search"]);
-  const {allShops, setAllShops} = useState([]);
+  const [allShops, setAllShops] = useState([]);
+  const [selectedShop, setSelectedShop] = useState();
 
   useEffect(() => {
-  setCurrentView("AllShops")
-  }, [allShops]);
+    console.log("test");
+    if (allShops.length > 0){
+      setCurrentView("AllShops")
+    }
+  }, [allShops.length]);
 
+  useEffect(() => {
+    //console.log(selectedShop.name);
+    console.log("選択された");
+    if (selectedShop != undefined){
+      console.log(selectedShop.name);
+      setCurrentView("SingleShop")
+    }
+  }, [selectedShop]);
 
   return (
     <div className="App">
      <NavBar
-      setCurrentView = {setCurrentView}/>
+      setCurrentView = {setCurrentView}
+      setAllShops = {setAllShops}
+      />
 
      {String(currentView).valueOf() === "Search" && (
      <Search
@@ -30,12 +43,17 @@ function App() {
      )}
       {String(currentView).valueOf() === "AllShops" && (
      <AllShops
-     setCurrentView = {setCurrentView}/>
+     setCurrentView = {setCurrentView}
+     allShops ={allShops}
+     setSelectedShop = {setSelectedShop}
+     />
 
       )}
 
        {String(currentView).valueOf() === "SingleShop" && (
-     <SingleShop/>
+     <SingleShop
+     selectedShop = {selectedShop}
+     />
        )}
 
        
