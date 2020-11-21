@@ -4,15 +4,13 @@ import areaList from '../data/area.json';
 export default function Search(props) {
 
     const [exceptWord, setExceptWord] = useState("");
-    const [area, setArea] = useState("");
+    const [areaCode, setAreaCode] = useState("");
     const [keyword, setKeyword] = useState("");
 
     const baseUrl = "http://localhost:3001/shops";
 
     const getAllShops = async () => {
-        console.log(area);
 
-        const areaCode = "AREAL5500";
         let url = baseUrl + "?areaCode=" + areaCode;
 
         if (exceptWord.length > 0) {
@@ -33,9 +31,9 @@ export default function Search(props) {
     }).filter(Boolean);
     const pullDownTag = [];
     for (let key in pullDownElements) {
-      pullDownTag.push(
-        <option key={key}>{pullDownElements[key]}</option>
-      );
+        pullDownTag.push(
+            <option key={key}>{pullDownElements[key]}</option>
+        );
     }
 
     return (
@@ -49,11 +47,12 @@ export default function Search(props) {
                 /></p>
                 <p>  エリア：
                     <select onChange={(e) => {
-                        setArea(e.target.value);
+                        for (const num in areaList) {
+                            if (areaList[num].areaname_l === e.target.value)
+                                setAreaCode(areaList[num].areacode_l);
+                        }
                     }}>
                         {pullDownTag}
-                        {/* <option >1月</option>
-                        <option >2月</option> */}
                     </select>
                 </p>
                 <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
