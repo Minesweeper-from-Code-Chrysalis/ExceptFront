@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import areaList from '../data/area.json';
 
 export default function Search(props) {
 
@@ -9,6 +10,8 @@ export default function Search(props) {
     const baseUrl = "http://localhost:3001/shops";
 
     const getAllShops = async () => {
+        console.log(area);
+
         const areaCode = "AREAL5500";
         let url = baseUrl + "?areaCode=" + areaCode;
 
@@ -22,6 +25,19 @@ export default function Search(props) {
         props.setAllShops(prev => [...prev, data]);
     }
 
+    // Assume only the support area Tokyo
+    const pullDownElements = areaList.map(area => {
+        if (area.pref.pref_name === "東京都") {
+            return area.areaname_l;
+        }
+    }).filter(Boolean);
+    const pullDownTag = [];
+    for (let key in pullDownElements) {
+      pullDownTag.push(
+        <option key={key}>{pullDownElements[key]}</option>
+      );
+    }
+
     return (
         <div>
             <p>お店を検索！！</p>
@@ -31,10 +47,15 @@ export default function Search(props) {
                         setExceptWord(e.target.value);
                     }}
                 /></p>
-                <p>  エリア：<input type="text" className="area-word" label="input2" placeholder="エリアを入力してください。"
-                    onChange={(e) => {
+                <p>  エリア：
+                    <select onChange={(e) => {
                         setArea(e.target.value);
-                    }} /></p>
+                    }}>
+                        {pullDownTag}
+                        {/* <option >1月</option>
+                        <option >2月</option> */}
+                    </select>
+                </p>
                 <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
                     onChange={(e) => {
                         setKeyword(e.target.value);
