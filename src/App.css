@@ -3,6 +3,12 @@
   height: 100%;
 }
 
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
