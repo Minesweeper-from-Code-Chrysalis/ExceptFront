@@ -1,14 +1,15 @@
 import React from "react";
 import "../styles/navBar.css";
+import Icon from '../images/icon.png'
 
 export default function NavBar(props) {
   return (
     <div className="NavBar">
-      <a className="home" onClick={() => {
+      <img className="icon" src={Icon} alt="icon" onClick={() => {
         props.setAllShops([]);
         props.setSelectedShop();
         props.setCurrentView("Search");
-      }}>Home</a>
+      }}/>
     </div>
   );
 }

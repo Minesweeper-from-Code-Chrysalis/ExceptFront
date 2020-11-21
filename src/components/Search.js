@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import areaList from '../data/area.json';
+import "../styles/search.css";
 
 export default function Search(props) {
 
@@ -36,34 +37,36 @@ export default function Search(props) {
     }
 
     return (
-        <div>
-            <p>お店を検索！！</p>
-            <form className="search-form">
-                <p> 除外ワード：<input type="text" className="except-word" label="input1" placeholder="除外ワードを入力してください。"
-                    onChange={(e) => {
-                        setExceptWord(e.target.value);
-                    }}
-                /></p>
-                <p>  エリア：
+        <div className="search-page">
+            <div className="search">
+                <p>お店を検索！！</p>
+                <form className="search-form">
+                    <p> 除外ワード：<input type="text" className="except-word" label="input1" placeholder="除外ワードを入力してください。"
+                        onChange={(e) => {
+                            setExceptWord(e.target.value);
+                        }}
+                    /></p>
+                    <p>  エリア：
                     <select onChange={(e) => {
-                        for (const num in areaList) {
-                            if (areaList[num].areaname_l === e.target.value)
-                                setAreaCode(areaList[num].areacode_l);
+                            for (const num in areaList) {
+                                if (areaList[num].areaname_l === e.target.value)
+                                    setAreaCode(areaList[num].areacode_l);
+                            }
+                        }}>
+                            {pullDownTag}
+                        </select>
+                    </p>
+                    <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
+                        onChange={(e) => {
+                            setKeyword(e.target.value);
+                        }} /></p>
+                    <p> <button type="submit" className="submit-button"
+                        onClick={() => {
+                            getAllShops();
                         }
-                    }}>
-                        {pullDownTag}
-                    </select>
-                </p>
-                <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
-                    onChange={(e) => {
-                        setKeyword(e.target.value);
-                    }} /></p>
-                <p> <button type="submit" className="submit-button"
-                    onClick={() => {
-                        getAllShops();
-                    }
-                    }>検索ボタン</button></p>
-            </form>
+                        }>検索</button></p>
+                </form>
+            </div>
         </div>
     );
 }
