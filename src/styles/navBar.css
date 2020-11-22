@@ -3,10 +3,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .icon {
   margin-right: 80%;
   cursor: pointer;
   height: 40%;
+}
+
+.login-button{
+  cursor: pointer;
+  height: 2rem;
+  width: 4rem;
+  background-color: rgb(204, 196, 196);
+  text-align: center;
+  border-radius: 8px;
+
 }

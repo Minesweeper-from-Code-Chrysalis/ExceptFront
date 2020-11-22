@@ -1,14 +1,16 @@
 import React from "react";
 import "../styles/singleShop.css";
 
+
 export default function SingleShop(props) {
+
   return (
     <div className="single-shop-page">
       <div className="back">
         <a className="back-to-list" onClick={() => {
           props.setSelectedShop();
           props.setCurrentView("AllShops");
-        }}>>>> 一覧に戻る</a>
+        }}> 一覧に戻る</a>
       </div>
       <div className="single-shop-info">
         <p>{props.selectedShop.name}</p>
