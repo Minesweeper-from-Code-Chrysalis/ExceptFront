@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  height: 100%;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .App-logo {

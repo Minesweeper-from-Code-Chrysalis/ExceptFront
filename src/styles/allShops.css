@@ -1,7 +1,16 @@
+.search-result-count {
+  color: whitesmoke;
+  margin-left: 75%;
+  font-size: 15px;
+}
+
 .shop{
-padding: 0.5em 1em;    
-margin: 2em 0;    
-color: #2c2c2f;    
-background: #cde4ff;
-cursor: pointer;
+  padding: 0.5em 1em;    
+  margin: 1em 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 3%;
+  color: #2c2c2f;    
+  background-color:rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }

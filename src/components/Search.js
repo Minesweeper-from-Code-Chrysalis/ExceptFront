@@ -1,78 +1,72 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import areaList from '../data/area.json';
+import "../styles/search.css";
 
 export default function Search(props) {
 
-    const [exceptWord, setExceptWord] = useState("")
-    const [area, setArea] = useState("")
-    const [keyword, setKeyword] = useState("")
+    const [exceptWord, setExceptWord] = useState("");
+    const [areaCode, setAreaCode] = useState("");
+    const [keyword, setKeyword] = useState("");
 
-    const baseUrl = "http://localhost:3000/shops";
+    const baseUrl = "http://localhost:3001/shops";
 
-    const getAllShops = async event => {
-        console.log("API呼び出します！");
-        console.log("【除外ワード】");
-        console.log(exceptWord);
-        console.log("【エリア】");
-        console.log(area);
-        console.log("【フリーワード】");
-        console.log(keyword);
+    const getAllShops = async () => {
+        let url = baseUrl + "?areaCode=" + areaCode;
 
-        const areaCode = "AREAL2107";
-        let url = baseUrl + "?areaCode="+areaCode;
-
-        if (exceptWord.length > 0){
-            console.log("除外ワード");
+        if (exceptWord.length > 0) {
             url = url + "&exceptWord=" + encodeURIComponent(exceptWord)
         }
-        if (keyword.length > 0){
-            console.log("キーワード");
-            url = url +"&keyword"+encodeURIComponent(keyword)
+        if (keyword.length > 0) {
+            url = url + "&keyword=" + encodeURIComponent(keyword)
         }
-        
-    
-    console.log(url);
-       const shops = await fetch(url);
-       const data = await shops.json();
-       console.log(data);
-
-       //console.log(props.setAllShops);
-      props.setAllShops(prev =>[...prev, data]);
+        const data = await fetch(url).then(res => res.json());
+        props.setAllShops(prev => [...prev, data]);
     }
 
-
+    // Assume only the support area Tokyo
+    const pullDownElements = areaList.map(area => {
+        if (area.pref.pref_name === "東京都") {
+            return area.areaname_l;
+        }
+    }).filter(Boolean);
+    const pullDownTag = [];
+    for (let key in pullDownElements) {
+        pullDownTag.push(
+            <option key={key}>{pullDownElements[key]}</option>
+        );
+    }
 
     return (
-        <div>
-            <p>お店を検索！！</p>
-            <form className="search-form">
-                <p> 除外ワード：<input type="text" className="except-word" label="input1" labelName="except-word" placeholder="除外ワードを入力してください。"
-                    onChange={(e) => {
-                        //console.log(e.target.value);
-                        setExceptWord(e.target.value);
-                    }}
-                /></p>
-                <p>  エリア：<input type="text" className="area-word" label="input2" labelName="area-word" placeholder="エリアを入力してください。"
-                    onChange={(e) => {
-                       // console.log(e.target.value);
-                        setArea(e.target.value);
-                    }} /></p>
-                <p> フリーワード：<input type="text" className="free-word" label="input3" labelName="free-word" placeholder="フリーワードを入力してください。"
-                    onChange={(e) => {
-                       // console.log(e.target.value);
-                        setKeyword(e.target.value);
-                    }} /></p>
-                <p> <button type="submit" className="submit-button"
-                    onClick={() => {
-                        getAllShops()
-                        //props.setCurrentView("AllShops")
-                    }
-                    }>検索ボタン</button></p>
-            </form>
+        <div className="search-page">
+            <div className="search">
+                <p>お店を検索！！</p>
+                <form className="search-form">
+                    <p> 除外ワード：<input type="text" className="except-word" label="input1" placeholder="除外ワードを入力してください。"
+                        onChange={(e) => {
+                            setExceptWord(e.target.value);
+                        }}
+                    /></p>
+                    <p>  エリア：
+                    <select onChange={(e) => {
+                            for (const num in areaList) {
+                                if (areaList[num].areaname_l === e.target.value)
+                                    setAreaCode(areaList[num].areacode_l);
+                            }
+                        }}>
+                            {pullDownTag}
+                        </select>
+                    </p>
+                    <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
+                        onChange={(e) => {
+                            setKeyword(e.target.value);
+                        }} /></p>
+                    <p> <button type="submit" className="submit-button"
+                        onClick={() => {
+                            getAllShops();
+                        }
+                        }>検索</button></p>
+                </form>
+            </div>
         </div>
-
-
-
-
     );
 }

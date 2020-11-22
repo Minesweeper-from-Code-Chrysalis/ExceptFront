@@ -1,0 +1,9 @@
+.back-to-list {
+  margin-left: 75%;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.single-shop-info {
+  background-color:rgba(255, 255, 255, 0.8);
+}

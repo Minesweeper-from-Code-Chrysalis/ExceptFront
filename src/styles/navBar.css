@@ -1,0 +1,12 @@
+.NavBar {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 80%;
+  cursor: pointer;
+  height: 40%;
+}

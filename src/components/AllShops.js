@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/allShops.css";
-
 
 export default function AllShops(props) {
 
-    console.log(props.allShops);
-console.log(props.allShops[0][0].name);
-console.log(props.allShops[0][0].category);
-console.log(props.allShops[0][0].access.line + props.allShops[0][0].access.station);
-const items =[];
-
-
-for (let key in props.allShops[0]) {
+  const items = [];
+  items.push(
+    <div className="search-result">
+      <a className="search-result-count">検索結果 {props.allShops[0].length}件</a>
+    </div>
+  );
+  for (let key in props.allShops[0]) {
+    const shop = props.allShops[0][key];
     items.push(
-      <div className = "shop" onClick = {() =>{
-        props.setSelectedShop(props.allShops[0][key]);
-
+      <div className="shop" key={key} onClick={() => {
+        props.setSelectedShop(shop);
       }}>
-      <p>{props.allShops[0][key].name}</p>
-      <p>{props.allShops[0][key].category}</p>
-      <p>{props.allShops[0][key].access.line}{props.allShops[0][key].access.station}</p>
+        <p>{shop.name}</p>
+        <p>{shop.category}</p>
+        <p>{shop.access.line}{shop.access.station}</p>
       </div>
     );
   }
 
-return (
-<div>{items}</div>
-);
+  return (
+    <div className="all-photos">
+      {items}
+    </div>
+  );
 }
