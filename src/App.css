@@ -4,9 +4,11 @@
 }
 
 .footer {
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
+  text-align: right;
+  padding: 20px 30px;
 }
 
 .App-logo {
