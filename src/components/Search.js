@@ -47,12 +47,13 @@ export default function Search(props) {
                         }}
                     /></p>
                     <p>  エリア：
-                    <select onChange={(e) => {
+                    <select defaultValue="エリアを選択" onChange={(e) => {
                             for (const num in areaList) {
                                 if (areaList[num].areaname_l === e.target.value)
                                     setAreaCode(areaList[num].areacode_l);
                             }
                         }}>
+                            <option hidden>エリアを選択してください</option>
                             {pullDownTag}
                         </select>
                     </p>
