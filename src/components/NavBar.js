@@ -10,7 +10,7 @@ export default function NavBar(props) {
         props.setSelectedShop();
         props.setCurrentView("Search");
       }}/>
-      <button className = "login-button">Login</button>
+      {/* <button className = "login-button">Login</button> */}
     </div>
   );
 }
