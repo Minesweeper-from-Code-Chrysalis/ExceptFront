@@ -12,3 +12,19 @@
   height: 20rem;
   width: 30rem;
 }
+
+.singleShop-name{
+  font-size: 40px;
+  font-weight:bold;
+}
+
+.shop-photo{
+  width: 450px;
+  height: auto;
+}
+
+.table{
+  margin-left : auto ;
+	margin-right : auto ;
+
+}

@@ -4,8 +4,6 @@ import "../styles/singleShop.css";
 
 export default function SingleShop(props) {
 
-  console.log(props.selectedShop.latitude);
-  console.log(props.selectedShop.longitude);
   const baseMapUrl = "https://maps.google.co.jp/maps?output=embed&q=";
   const latitude = props.selectedShop.latitude;
   const longitude = props.selectedShop.longitude;
@@ -20,12 +18,17 @@ export default function SingleShop(props) {
         }}> 一覧に戻る</a>
       </div>
       <div className="single-shop-info">
-        <p>{props.selectedShop.name}</p>
+        <p className = "singleShop-name">{props.selectedShop.name}</p>
         <p>{props.selectedShop.category}</p>
         <p>{props.selectedShop.opentime}</p>
         <p>{props.selectedShop.access.line}{props.selectedShop.access.station}</p>
-        <img className="single-shop" src={props.selectedShop.image_url.shop_image1} alt="shop_image" />
-        <p><iframe className = "map" src = {mapUrl}></iframe></p>
+        <img className="shop-photo" src={props.selectedShop.image_url.shop_image1} alt="shop_image" />
+        <table className = "table" border="2">
+        <tr>
+          <td>住所</td>
+          <td><iframe className = "map" src = {mapUrl}></iframe></td>
+        </tr>
+        </table>
       </div>
     </div>
   );
