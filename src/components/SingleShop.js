@@ -19,8 +19,8 @@ export default function SingleShop(props) {
       </div>
       <div className="single-shop-info">
         <p className = "singleShop-name">{props.selectedShop.name}</p>
-        <p>{props.selectedShop.category}</p>
-        <p>{props.selectedShop.pr.pr_short}</p>
+        <p className = "category">{props.selectedShop.category}</p>
+        <p className = "pr_short">{props.selectedShop.pr.pr_short}</p>
         <img className="shop-photo" src={props.selectedShop.image_url.shop_image1} alt="shop_image" />
         
         

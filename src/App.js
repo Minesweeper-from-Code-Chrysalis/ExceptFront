@@ -4,11 +4,13 @@ import Search from "./components/Search";
 import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
 import SingleShop from "./components/SingleShop";
+import Error from "./components/Error";
 
 function App() {
   const [currentView, setCurrentView] = useState(["Search"]);
   const [allShops, setAllShops] = useState([]);
   const [selectedShop, setSelectedShop] = useState();
+
 
   useEffect(() => {
     if (selectedShop !== undefined) {
@@ -43,6 +45,13 @@ function App() {
           selectedShop={selectedShop}
           setSelectedShop={setSelectedShop}
           setCurrentView={setCurrentView}
+        />
+      )}
+       {String(currentView).valueOf() === "Error" && (
+        <Error
+        setCurrentView={setCurrentView}
+        setAllShops={setAllShops}
+        setSelectedShop={setSelectedShop}
         />
       )}
       <div className="footer">

@@ -8,6 +8,7 @@ export default function Search(props) {
     const [areaCode, setAreaCode] = useState("");
     const [keyword, setKeyword] = useState("");
 
+
     const baseUrl = "https://www.except-app.com/shops";
 
     const getAllShops = async () => {
@@ -19,8 +20,16 @@ export default function Search(props) {
         if (keyword.length > 0) {
             url = url + "&keyword=" + encodeURIComponent(keyword)
         }
-        const data = await fetch(url).then(res => res.json());
-        props.setAllShops(prev => [...prev, data]);
+        const preData = await fetch(url);
+        const result = await preData.status;
+    
+        if (result === 400) {
+            props.setCurrentView("Error");
+          }else{
+            const data = await fetch(url).then(res => res.json());
+            props.setAllShops(prev => [...prev, data]);
+          }
+        
     }
 
     // Assume only the support area Tokyo
@@ -39,15 +48,18 @@ export default function Search(props) {
     return (
         <div className="search-page">
             <div className="search">
-                <p>お店を検索！！</p>
+                <p className = "top-message">お店を検索</p>
                 <form className="search-form">
-                    <p> 除外ワード：<input type="text" className="except-word" label="input1" placeholder="除外ワードを入力してください。"
+                    <div className = "except">
+                    <p> 除外ワード：<input type="text" className="word" label="input1" placeholder="除外ワードを入力してください"
                         onChange={(e) => {
                             setExceptWord(e.target.value);
                         }}
                     /></p>
+                    </div>
+                    <div className = "key">
                     <p>  エリア：
-                    <select defaultValue="エリアを選択" onChange={(e) => {
+                    <select className = "word" onChange={(e) => {
                             for (const num in areaList) {
                                 if (areaList[num].areaname_l === e.target.value)
                                     setAreaCode(areaList[num].areacode_l);
@@ -57,15 +69,19 @@ export default function Search(props) {
                             {pullDownTag}
                         </select>
                     </p>
-                    <p> フリーワード：<input type="text" className="free-word" label="input3" placeholder="フリーワードを入力してください。"
+                    <p> フリーワード：<input type="text" className="word" label="input3" placeholder="フリーワードを入力してください"
                         onChange={(e) => {
                             setKeyword(e.target.value);
                         }} /></p>
+
+                        </div>
                     <p> <button type="submit" className="submit-button"
                         onClick={() => {
                             getAllShops();
                         }
-                        }>検索</button></p>
+                        }><span>検索</span></button></p>
+
+
                 </form>
             </div>
         </div>
