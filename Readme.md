@@ -1,4 +1,4 @@
-# ExceptBack
+# ExceptFront
 このリポジトリは Code Chrysalis の生徒であるときに作成しました（This was created during my time as a student at Code Chrysalis）
 
 ## Exceptとは
@@ -15,12 +15,12 @@ Exceptのフロントエンド向けのリポジトリです。
 ※バックエンドのリポジトリは以下に作成されています。
 (https://github.com/Minesweeper-from-Code-Chrysalis/ExceptBack)
 
-# コマンドの説明
+## コマンドの説明
 
 このプロジェクトは以下のようにブートストラップされています。
  [Create React App](https://github.com/facebook/create-react-app).
 
-## yarn install
+## `yarn install`
 
 開発環境にクローン後、yarnをインストールしてください。
 
@@ -37,25 +37,25 @@ Exceptのフロントエンド向けのリポジトリです。
 検索ボタンを押下後、検索結果の一覧を表示する画面（AllShops.js）に遷移します。
 検索条件に合致するレストランが存在しない場合は、エラー画面（Error.js）に遷移します。
 
-![画面イメージ](screenshots/Search.jpeg)
+![画面イメージ](screenshots/Search.png)
 
 ### レストラン一覧（AllShops.js）
 検索画面で指定した検索条件に合致したレストランの一覧を表示します。
 任意のレストラン押下後、レストラン詳細画面（SingleShop.js）に遷移します。
 
-![画面イメージ](screenshots/AllShops.jpeg)
+![画面イメージ](screenshots/AllShops.png)
 
 ### レストラン詳細（SingleShop.js）
 レストラン一覧画面で選択されたレストランの詳細情報を表示する画面です。
 画面上部ヘッダー部分の「一覧に戻る」を押下することで、レストラン一覧画面（AllShops.js）に遷移します。
 
-![画面イメージ](screenshots/SingleShop.jpeg)
+![画面イメージ](screenshots/SingleShop.png)
 
 ### エラー（Error.js）
 検索画面で検索した結果、指定した検索条件に合致したレストランが存在しなかった場合に、本画面に遷移します。
 「トップページに戻る」を押下後、検索画面（Search.js）に遷移します。
 
-![画面イメージ](screenshots/Error.jpeg)
+![画面イメージ](screenshots/Error.png)
 
 ## 使用言語
 - react -v 17.0.1
