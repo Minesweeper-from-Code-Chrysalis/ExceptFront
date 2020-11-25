@@ -8,7 +8,7 @@ export default function Search(props) {
     const [areaCode, setAreaCode] = useState("");
     const [keyword, setKeyword] = useState("");
 
-    //const baseUrl = "http://localhost:3001/shops";
+
     const baseUrl = "https://www.except-app.com/shops";
 
     const getAllShops = async () => {
