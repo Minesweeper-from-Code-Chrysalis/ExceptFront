@@ -57,6 +57,13 @@ Exceptのフロントエンド向けのリポジトリです。
 
 ![画面イメージ](screenshots/Error.png)
 
+## デプロイの説明
+reactで開発したフロントエンドアプリは[AWS Amplify](https://aws.amazon.com/jp/amplify/)を利用してデプロイします。\
+デプロイのタイミングはmain branchにmergeされた時で、mergeをトリガーに自動でデプロイが実行されます。\
+デプロイの状況はAWSのコンソール( **AWS Amplify** > **すべてのアプリ** > **ExceptFront** )から見ることができます。\
+実際にデプロイされたコンテンツは下記のURLから利用することができます。\
+(https://main.d1kfboacuw8kal.amplifyapp.com/?#home )
+
 ## 使用言語
 - react -v 17.0.1
 - eslint -v 7.14.0
