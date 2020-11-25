@@ -20,13 +20,34 @@ export default function SingleShop(props) {
       <div className="single-shop-info">
         <p className = "singleShop-name">{props.selectedShop.name}</p>
         <p>{props.selectedShop.category}</p>
-        <p>{props.selectedShop.opentime}</p>
-        <p>{props.selectedShop.access.line}{props.selectedShop.access.station}</p>
+        <p>{props.selectedShop.pr.pr_short}</p>
         <img className="shop-photo" src={props.selectedShop.image_url.shop_image1} alt="shop_image" />
-        <table className = "table" border="2">
+        
+        
+        <table className = "table" border="1">
         <tr>
-          <td>住所</td>
-          <td><iframe className = "map" src = {mapUrl}></iframe></td>
+          <td className = "td_column">店舗名</td>
+          <td className = "table-td">{props.selectedShop.name}</td>
+        </tr>
+        <tr>
+        <td className = "td_column">電話番号</td>
+          <td className = "table-td">{props.selectedShop.tel}</td>
+        </tr>
+        <tr>
+        <td className = "td_column">住所</td>
+          <td className = "table-td"><p>{props.selectedShop.address}</p><iframe className = "map" src = {mapUrl}></iframe></td>
+        </tr>
+        <tr>
+        <td className = "td_column">アクセス</td>
+          <td className = "table-td">{props.selectedShop.access.line}{props.selectedShop.access.station}{props.selectedShop.access.station_exit}徒歩{props.selectedShop.access.walk}分</td>
+        </tr>
+        <tr>
+        <td className = "td_column">営業時間</td>
+          <td className = "table-td">{props.selectedShop.opentime}</td>
+        </tr>
+        <tr>
+        <td className = "td_column">店舗から</td>
+          <td className = "table-td">{props.selectedShop.pr.pr_long}</td>
         </tr>
         </table>
       </div>
