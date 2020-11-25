@@ -1,11 +1,18 @@
 .search-page {
   height: 80%;
+  font-family: "Meiryo";
 
 }
 
+.top-message{
+  color:black;
+  font-size: 25px;
+  font-weight:bold;
+}
+
 .search {
-  height:250px;
-  width: 500px;
+  height:400px;
+  width: 600px;
   margin: auto;
   position: absolute;
   top: 0;
@@ -16,4 +23,75 @@
   border-radius: 3%;
 }
 
+.except{
+  font-weight:bold;
+  padding: 0.2em;
+  margin: 2em 2em;
+  color: black;
+  text-align: left;
+  border-left: solid 5px black;
+  box-shadow: 0 3px 5px black;
+}
+
+.key{
+  font-weight:bold;
+  padding: 0.2em;
+  margin: 2em 2em;
+  color: black;
+  text-align: left;
+  border-left: solid 5px  black;
+  box-shadow: 0 3px 5px black;
+}
+
+.submit-button{
+  width:150px;
+  display: inline-block;
+  text-align: center;
+  background-color:black;
+  border: 2px solid black;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.submit-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.submit-button::before,
+.submit-button::after {
+  content: "";
+  display: block;
+  background-color: #FFF;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: .2s;
+}
+.submit-button::before {
+  left: 0;
+}
+.submit-button::after {
+  right: 0;
+}
+
+.submit-button:hover:before,
+.submit-button:hover:after {
+  width: 0;
+  background-color: #FFF;
+}
+
+.submit-button:hover {
+  color: #FFF;
+}
+
+.word{
+  width:250px;
+}
 

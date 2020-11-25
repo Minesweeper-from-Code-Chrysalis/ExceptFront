@@ -15,10 +15,10 @@ export default function AllShops(props) {
       <div className="shop" key={key} onClick={() => {
         props.setSelectedShop(shop);
       }}>
-        <section>
+        <section className = "table-font">
         <img className="shop-photos" src={shop.image_url.shop_image1} alt="shop_image" />
         <p className = "shop-name">{shop.name}</p>
-        <p>ジャンル：{shop.category}</p>
+        <p className = "genre">ジャンル：{shop.category}</p>
         <p>最寄り駅：{shop.access.line}{shop.access.station}</p>
         <p>{shop.pr.pr_short}</p>
         </section>
@@ -29,7 +29,7 @@ export default function AllShops(props) {
   console.log(props.allShops[0][1]);
 
   return (
-    <div className="all-photos">
+    <div>
       {items}
     </div>
   );
