@@ -8,7 +8,7 @@ export default function Search(props) {
     const [areaCode, setAreaCode] = useState("");
     const [keyword, setKeyword] = useState("");
 
-    const baseUrl = "http://localhost:3001/shops";
+    const baseUrl = "https://ec2-13-114-78-94.ap-northeast-1.compute.amazonaws.com:3001/shops";
 
     const getAllShops = async () => {
         let url = baseUrl + "?areaCode=" + areaCode;
