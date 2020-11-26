@@ -79,7 +79,7 @@ export default function Search(props) {
                         onClick={() => {
                             getAllShops();
                         }
-                        }><span>検索</span></button></p>
+                        }><span>検索！</span></button></p>
 
 
                 </form>
