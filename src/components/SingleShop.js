@@ -11,7 +11,6 @@ export default function SingleShop(props) {
     latitude 
     },${ 
     longitude}`;
-    console.log(selectedShop.url);
   return (
     <div className="single-shop-page">
       <div className="back">

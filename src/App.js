@@ -19,7 +19,6 @@ function App() {
       setCurrentView("AllShops")
     }
   }, [allShops.length, selectedShop]);
-
   return (
     <div className="App">
       <NavBar
@@ -27,7 +26,7 @@ function App() {
         setAllShops={setAllShops}
         setSelectedShop={setSelectedShop}
       />
-      {String(currentView).valueOf() === "Search" && (
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
         <Search
           setCurrentView={setCurrentView}
           setAllShops={setAllShops}

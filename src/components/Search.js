@@ -26,8 +26,8 @@ export default function Search(props) {
     if (result === 400) {
       setCurrentView("Error");
     } else {
-      const data = await fetch(url).then((res) => res.json());
-      setAllShops((prev) => [...prev, data]);
+      const data = await fetch(url).then((res) => res.json());    
+      setAllShops([data]);
     }
   };
 
