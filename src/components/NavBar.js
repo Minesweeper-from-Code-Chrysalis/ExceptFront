@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/navBar.css";
-import Icon from "../images/icon.png";
+import Icon from "../images/except.png";
 
 
 export default function NavBar(props) {

@@ -1,5 +1,5 @@
 .search-page {
-  height: 44%;
+  height: 450px;
   font-family: "Meiryo";
 
 }
@@ -11,7 +11,7 @@
 }
 
 .search {
-  height:397px;
+  height:280px;
   width: 600px;
   margin: auto;
   position: absolute;
@@ -24,7 +24,7 @@
 .except{
   font-weight:bold;
   padding: 0.2em;
-  margin: 2em 2em;
+  margin: 0em 0em;
   /* color: black;
   text-align: left;
   border-left: solid 5px black;
@@ -34,7 +34,7 @@
 .key{
   font-weight:bold;
   padding: 0.2em;
-  margin: 2em 2em;
+  margin: 1em 1em;
   /* color: black;
   text-align: left;
   border-left: solid 5px  black;
@@ -42,7 +42,7 @@
 }
 
 .submit-button{
-  width:150px;
+  width:170px;
   display: inline-block;
   text-align: center;
   background-color:black;
@@ -97,7 +97,7 @@
 .area{
   width:250px;
   height:56px;
-  margin: -5.5px;
+  margin: -0.5px;
 }
 
 .accordion-summary{
@@ -122,4 +122,5 @@
   color: black;
   width: 100;
   font-size: 15px;
+  margin-left: 60%;
 }

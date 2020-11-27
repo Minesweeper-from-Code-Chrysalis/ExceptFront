@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/allShops.css";
 import PropTypes from "prop-types";
 
@@ -21,25 +21,25 @@ export default function AllShops(props) {
         }}
       >
         <section className="table-font">
+          <p className="shop-name">{shop.name}</p>
           <img
             className="shop-photos"
             src={shop.image_url.shop_image1}
             alt="shop_image"
           />
-          <p className="shop-name">{shop.name}</p>
+          
           <p className="genre">ジャンル：{shop.category}</p>
           <p>
             最寄り駅：{shop.access.line}
             {shop.access.station}
           </p>
-          <p>{shop.pr.pr_short}</p>
         </section>
       </div>
     );
   });
 
   return (
-    <div>
+    <div className="flex-container">
       {items}
     </div>
   );
