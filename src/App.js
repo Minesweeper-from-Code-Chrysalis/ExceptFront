@@ -20,7 +20,9 @@ function App() {
     }
   }, [allShops.length, selectedShop]);
   return (
+    
     <div className="App">
+
       <NavBar
         setCurrentView={setCurrentView}
         setAllShops={setAllShops}
@@ -29,6 +31,7 @@ function App() {
       {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
         <Search
           setCurrentView={setCurrentView}
+          allShops={allShops}
           setAllShops={setAllShops}
         />
       )}
@@ -53,11 +56,7 @@ function App() {
         setSelectedShop={setSelectedShop}
         />
       )}
-      <div className="footer">
-        <a className = "taberogu-bottun" href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
-          <img src="https://api.gnavi.co.jp/api/img/credit/api_155_20.gif" width="155" height="20" border="0" alt="グルメ情報検索サイト　ぐるなび"/>
-        </a>
-      </div>
+
     </div>
   );
 }

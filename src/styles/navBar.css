@@ -1,10 +1,22 @@
 .NavBar {
   height: 10%;
   display: flex;
+  margin-top: 20px;
   justify-content: center;
   align-items: center;
 
+
 }
+.imgbox {
+  width:80%;
+  height: 100%;
+}
+
+.gurunabi {
+  width:20%;
+  height: 100%;
+}
+
 
 .icon {
   margin-right: 80%;

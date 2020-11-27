@@ -1,5 +1,5 @@
 .search-page {
-  height: 80%;
+  height: 44%;
   font-family: "Meiryo";
 
 }
@@ -11,36 +11,34 @@
 }
 
 .search {
-  height:400px;
+  height:397px;
   width: 600px;
   margin: auto;
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   background-color:rgba(255, 255, 255, 0.8);
-  border-radius: 3%;
+
 }
 
 .except{
   font-weight:bold;
   padding: 0.2em;
   margin: 2em 2em;
-  color: black;
+  /* color: black;
   text-align: left;
   border-left: solid 5px black;
-  box-shadow: 0 3px 5px black;
+  box-shadow: 0 3px 5px black; */
 }
 
 .key{
   font-weight:bold;
   padding: 0.2em;
   margin: 2em 2em;
-  color: black;
+  /* color: black;
   text-align: left;
   border-left: solid 5px  black;
-  box-shadow: 0 3px 5px black;
+  box-shadow: 0 3px 5px black; */
 }
 
 .submit-button{
@@ -93,5 +91,35 @@
 
 .word{
   width:250px;
+  height:50px;
 }
 
+.area{
+  width:250px;
+  height:56px;
+  margin: -5.5px;
+}
+
+.accordion-summary{
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.acdn-content
+{
+	width: 200px ;
+	height: 200px ;
+	background: #D36015 ;
+}
+
+.result-count {
+  color: black;
+  width: 100;
+  font-size: 15px;
+}
