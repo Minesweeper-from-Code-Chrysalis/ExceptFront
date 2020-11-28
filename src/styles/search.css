@@ -1,6 +1,7 @@
 .search-page {
   height: 450px;
   font-family: "Meiryo";
+  width: 100%;
 
 }
 
@@ -11,8 +12,8 @@
 }
 
 .search {
-  height:280px;
-  width: 600px;
+  height:295px;
+  width: 80%;
   margin: auto;
   position: absolute;
   left: 0;
@@ -22,6 +23,9 @@
 }
 
 .except{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   font-weight:bold;
   padding: 0.2em;
   margin: 0em 0em;
@@ -90,12 +94,12 @@
 }
 
 .word{
-  width:250px;
+  width:30%;
   height:50px;
 }
 
 .area{
-  width:250px;
+  width:30%;
   height:56px;
   margin: -0.5px;
 }
@@ -122,5 +126,12 @@
   color: black;
   width: 100;
   font-size: 15px;
-  margin-left: 60%;
+  display: block;
+  text-align: right;
+  margin-right: 5%;
+}
+
+.tags {
+  margin-left: auto;
+  margin-right: auto;
 }

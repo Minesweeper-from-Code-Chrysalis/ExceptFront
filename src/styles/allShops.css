@@ -14,7 +14,8 @@
   background-color:rgba(255, 255, 255, 0.8);
   cursor: pointer;
   box-sizing: border-box;
-  width: 30%;
+  flex-basis: 400px;
+  flex-grow: 100px;
   
 }
 

@@ -69,30 +69,115 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 export default function Search(props) {
-    const items = [];
-    const [state, setState] = React.useState({
-        checkedA: {
-            word: "辛い",
+    const sceneItems = [];
+    const allergiesItems = [];
+    const foodstuffItems = [];
+    const facilityItems = [];
+    const [sceneState, setSceneState] = React.useState({
+        sceneCheckedA: {
+            word: "飲み会",
             check: false
         },
-        checkedB: {
-            word: "うるさい",
+        sceneCheckedB: {
+            word: "デート",
             check: false
         },
-        checkedC: {
-            word: "苦い",
+        sceneCheckedC: {
+            word: "子連れ",
             check: false
         },
-        checkedD: {
-            word: "臭い",
+        sceneCheckedD: {
+            word: "学生",
             check: false
         },
-        checkedE: {
-            word: "カップル向け",
+        sceneCheckedE: {
+            word: "高級",
+            check: false
+        },
+    });
+    const [allergiesState, setAllergiesState] = React.useState({
+
+        AllergiesCheckedA: {
+            word: "小麦",
+            check: false
+        },
+        AllergiesCheckedB: {
+            word: "乳",
+            check: false
+        },
+        AllergiesCheckedC: {
+            word: "卵",
+            check: false
+        },
+        AllergiesCheckedD: {
+            word: "そば",
+            check: false
+        },
+        AllergiesCheckedE: {
+            word: "海老",
+            check: false
+        },
+        AllergiesCheckedF: {
+            word: "蟹",
+            check: false
+        },
+        AllergiesCheckedG: {
+            word: "ナッツ",
             check: false
         },
     });
 
+    const [foodstuffState, setFoodstuffState] = React.useState({
+
+        foodstuffCheckedA: {
+            word: "野菜",
+            check: false
+        },
+        foodstuffCheckedB: {
+            word: "トマト",
+            check: false
+        },
+        foodstuffCheckedC: {
+            word: "ナス",
+            check: false
+        },
+        foodstuffCheckedD: {
+            word: "にんにく",
+            check: false
+        },
+        foodstuffCheckedE: {
+            word: "パクチー",
+            check: false
+        },
+        foodstuffCheckedF: {
+            word: "ピーマン",
+            check: false
+        },
+    });
+
+    const [facilityState, setFacilityState] = React.useState({
+
+        facilityCheckedA: {
+            word: "エアコン",
+            check: false
+        },
+        facilityCheckedB: {
+            word: "ビュッフェ",
+            check: false
+        },
+        facilityCheckedC: {
+            word: "座敷",
+            check: false
+        },
+        facilityCheckedD: {
+            word: "カウンター",
+            check: false
+        },
+        facilityCheckedE: {
+            word: "狭い",
+            check: false
+        },
+    });
     const [exceptWord, setExceptWord] = useState("");
     const [areaCode, setAreaCode] = useState("");
     const [keyword, setKeyword] = useState("");
@@ -104,15 +189,54 @@ export default function Search(props) {
     const [countAfter, setCountAfter] = useState(0);
 
     const handleChange = (event) => {
-        setState({ ...state, [event.target.id]: {word: event.target.name, check: event.target.checked }});
+        setSceneState({ ...sceneState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
     };
-    Object.entries(state).map(([key, value]) => {
-        return items.push(
+    Object.entries(sceneState).map(([key, value]) => {
+        return sceneItems.push(
             <FormControlLabel
-            control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} key={key}/>}
-            label={value.word}
-            key={key}
-        />
+                control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} key={key} />}
+                label={value.word}
+                key={key}
+            />
+        );
+    });
+
+    const allergiesHandleChange = (event) => {
+        setAllergiesState({ ...allergiesState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
+    };
+    Object.entries(allergiesState).map(([key, value]) => {
+        return allergiesItems.push(
+            <FormControlLabel
+                control={<BlackCheckbox checked={value.check} onChange={allergiesHandleChange} id={key} name={value.word} key={key} />}
+                label={value.word}
+                key={key}
+            />
+        );
+    });
+
+    const foodstuffHandleChange = (event) => {
+        setFoodstuffState({ ...foodstuffState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
+    };
+    Object.entries(foodstuffState).map(([key, value]) => {
+        return foodstuffItems.push(
+            <FormControlLabel
+                control={<BlackCheckbox checked={value.check} onChange={foodstuffHandleChange} id={key} name={value.word} key={key} />}
+                label={value.word}
+                key={key}
+            />
+        );
+    });
+
+    const facilityHandleChange = (event) => {
+        setFacilityState({ ...facilityState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
+    };
+    Object.entries(facilityState).map(([key, value]) => {
+        return facilityItems.push(
+            <FormControlLabel
+                control={<BlackCheckbox checked={value.check} onChange={facilityHandleChange} id={key} name={value.word} key={key} />}
+                label={value.word}
+                key={key}
+            />
         );
     });
 
@@ -182,29 +306,7 @@ export default function Search(props) {
     return (
         <div className="search-page">
             <div className="search">
-                <p className="top-message"/>
-
-                <div>
-                    <button
-                        type="submit"
-                        className="submit-button"
-                        onClick={() => {
-                            getAllShops();
-                        }}
-                    >
-                        <span>お店を検索</span>
-                    </button>
-
-                    <div className="result-count">
-                        検索結果 <font size="6">{countBefore}</font>件
-                        {countBefore === 100 && (
-                            <font>
-                                以上
-                            </font>
-                        )}
-                    </div>
-
-                </div>
+                <p className="top-message" />
                 <form className="search-form">
 
                     <div className="key">
@@ -227,11 +329,35 @@ export default function Search(props) {
                             type="text"
                             className="word"
                             label="input3"
-                            placeholder="カンマ区切りでフリーワードを入力"
+                            placeholder="検索ワードを入力"
                             onChange={(e) => {
                                 setKeyword(e.target.value);
                             }}
                         />
+
+                    </div>
+                    <div>
+                        <p>
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                onClick={() => {
+                                    getAllShops();
+                                }}
+                            >
+                                <span>お店を検索</span>
+                            </button>
+                        </p>
+                        <div className="result-count">
+                            <p>
+                                検索結果 <font size="6">{countBefore}</font>件
+                        {countBefore === 100 && (
+                                    <font>
+                                        以上
+                                    </font>
+                                )}
+                            </p>
+                        </div>
 
                     </div>
 
@@ -255,14 +381,30 @@ export default function Search(props) {
                                     type="text"
                                     className="word"
                                     label="input1"
-                                    placeholder="カンマ区切りで除外ワードを入力"
+                                    placeholder="除外ワードを入力"
                                     onChange={(e) => {
                                         setExceptWord(e.target.value);
                                     }}
                                 />
                             </p>
-                            <FormGroup row>
-                                    {items}
+                            <FormGroup>
+                                <p>アレルギー食材</p>
+                                <div className="tags">
+                                    {allergiesItems}
+                                </div>
+                                <p>苦手食材</p>
+                                <div className="tags">
+                                    {foodstuffItems}
+                                </div>
+                                <p>利用シーン</p>
+                                <div className="tags">
+                                    {sceneItems}
+                                </div>
+                                <p>設備</p>
+                                <div className="tags">
+                                    {facilityItems}
+                                </div>
+
                             </FormGroup>
                         </div>
                     </AccordionDetails>
