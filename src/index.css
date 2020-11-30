@@ -6,13 +6,18 @@ body,html {
   width: 100%;
 }
 
-body {
+body::before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url('./images/restaurant.jpg');
+  content: ""; 
+  display:block;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+  height:100vh;
+  background: url('./images/restaurant.jpg') no-repeat center;
   background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
   width: 100%;
 }
 
