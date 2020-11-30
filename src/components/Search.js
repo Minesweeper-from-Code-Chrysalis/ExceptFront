@@ -179,6 +179,7 @@ export default function Search(props) {
         },
     });
     const [exceptWord, setExceptWord] = useState("");
+ //   const [exceptTag, setExceptTag] = useState("");
     const [areaCode, setAreaCode] = useState("");
     const [lowBudget, setLowBudget] = useState(0);
     const [highBudget, setHighBudget] = useState(999999);
@@ -204,6 +205,7 @@ export default function Search(props) {
             <FormControlLabel
                 control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} />}
                 label={value.word}
+                key={key}
             />
         );
     });
@@ -216,6 +218,7 @@ export default function Search(props) {
             <FormControlLabel
                 control={<BlackCheckbox checked={value.check} onChange={allergiesHandleChange} id={key} name={value.word} />}
                 label={value.word}
+                key={key}
             />
         );
     });
@@ -228,6 +231,7 @@ export default function Search(props) {
             <FormControlLabel
                 control={<BlackCheckbox checked={value.check} onChange={foodstuffHandleChange} id={key} name={value.word} />}
                 label={value.word}
+                key={key}
             />
         );
     });
@@ -240,6 +244,7 @@ export default function Search(props) {
             <FormControlLabel
                 control={<BlackCheckbox checked={value.check} onChange={facilityHandleChange} id={key} name={value.word} />}
                 label={value.word}
+                key={key}
             />
         );
     });
@@ -272,6 +277,48 @@ export default function Search(props) {
 
     const getAllShops = async () => {
         let url = `${baseUrl}?areaCode=${areaCode}`;
+        let tags = "";
+        Object.entries(sceneState).map(([, value]) => {
+            if (value.check === true){
+                if (tags !== ""){
+                    tags = `${tags},${value.word}`;
+                } else {
+                    tags = value.word;
+                }
+            }
+            return null;
+        });
+        Object.entries(allergiesState).map(([, value]) => {
+            if (value.check === true){
+                if (tags !== ""){
+                    tags = `${tags},${value.word}`;
+                } else {
+                    tags = value.word;
+                }
+            }
+            return null;
+        });
+        Object.entries(foodstuffState).map(([, value]) => {
+            if (value.check === true){
+                if (tags !== ""){
+                    tags = `${tags},${value.word}`;
+                } else {
+                    tags = value.word;
+                }
+            }
+            return null;
+        });
+        Object.entries(facilityState).map(([, value]) => {
+            if (value.check === true){
+                if (tags !== ""){
+                    tags = `${tags},${value.word}`;
+                } else {
+                    tags = value.word;
+                }
+            }
+            return null;
+        });
+        console.log(tags)
 
         if (exceptWord.length > 0) {
             url = `${url}&exceptWord=${encodeURIComponent(exceptWord)}`;
@@ -316,7 +363,7 @@ export default function Search(props) {
                 <form className="search-form">
 
                     <div className="key">
-                        {" "}
+                        検索エリア：
                         <select
                             className="area"
                             onChange={(e) => {
@@ -331,54 +378,25 @@ export default function Search(props) {
                             {pullDownTag}
                         </select>
 
-                        <input
-                            type="text"
-                            className="word"
-                            label="input3"
-                            placeholder="検索ワードを入力"
-                            onChange={(e) => {
-                                setKeyword(e.target.value);
-                            }}
-                        />
+
 
                     </div>
                     <div className="key">
-                    <select
-                            className="budget"
-                            onChange={(e) => {
-                                Object.entries(budgetList).map(([, value]) => {
-                                    if (Number(value) === Number(e.target.value)){
-                                        return setLowBudget(value);
-                                    }
-                                    if (String(e.target.value) === "指定なし"){
-                                        return setLowBudget(0);
-                                    }
-                                    return null;
-                                });
-                            }}
-                        >
-                            <option hidden>予算下限</option>
-                            {pullDownBudget}
-                        </select>
-                        ～
-                        <select
-                            className="budget"
-                            onChange={(e) => {
-                                Object.entries(budgetList).map(([, value]) => {
-                                    if (Number(value) === Number(e.target.value)){
-                                        return setHighBudget(value);
-                                    }
-                                    if (String(e.target.value) === "指定なし"){
-                                        return setHighBudget(999999);
-                                    }
-                                    return null;
-                                });
-                            }}
-                        >
-                            <option hidden>予算上限</option>
-                            {pullDownBudget}
-                        </select>
-                    </div>
+
+                    <p>
+                    除外ワード：       
+                                <input
+                                    type="text"
+                                    className="word"
+                                    label="input1"
+                                    placeholder="除外ワードを入力"
+                                    onChange={(e) => {
+                                        setExceptWord(e.target.value);
+                                    }}
+                                />
+                            </p>
+                            </div>
+
                     <div>
                         <p>
                             <button
@@ -406,6 +424,9 @@ export default function Search(props) {
 
 
                 </form>
+
+            </div>
+            <div className="search">
                 <Accordion>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -413,37 +434,76 @@ export default function Search(props) {
                         id="panel1a-header"
                     >
                         <div className="accordion-summary">
-                            除外詳細条件
+                            詳細条件
                 </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <div className="except">
-                            <p>
-                                除外ワード：
-                                <input
-                                    type="text"
-                                    className="word"
-                                    label="input1"
-                                    placeholder="除外ワードを入力"
-                                    onChange={(e) => {
-                                        setExceptWord(e.target.value);
-                                    }}
-                                />
-                            </p>
+                    <div className="except">
+                        <div className="key">
+                        通常検索ワード：
+                        <input
+                            type="text"
+                            className="word"
+                            label="input3"
+                            placeholder="検索ワードを入力"
+                            onChange={(e) => {
+                                setKeyword(e.target.value);
+                            }}
+                        />
+                        </div>
+                        <div className="key">
+                        予算：
+                    <select
+                            className="budget"
+                            onChange={(e) => {
+                                Object.entries(budgetList).map(([, value]) => {
+                                    if (Number(value) === Number(e.target.value)){
+                                        return setLowBudget(value);
+                                    }
+                                    if (String(e.target.value) === "指定なし"){
+                                        return setLowBudget(0);
+                                    }
+                                    return null;
+                                });
+                            }}
+                        >
+                            <option hidden>下限</option>
+                            {pullDownBudget}
+                        </select>
+                        ～
+                        <select
+                            className="budget"
+                            onChange={(e) => {
+                                Object.entries(budgetList).map(([, value]) => {
+                                    if (Number(value) === Number(e.target.value)){
+                                        return setHighBudget(value);
+                                    }
+                                    if (String(e.target.value) === "指定なし"){
+                                        return setHighBudget(999999);
+                                    }
+                                    return null;
+                                });
+                            }}
+                        >
+                            <option hidden>上限</option>
+                            {pullDownBudget}
+                        </select>
+                        </div>
+                        <hr width="95%" />
                             <FormGroup>
-                                <p>アレルギー食材</p>
+                                <p>除外アレルギー食材</p>
                                 <div className="tags">
                                     {allergiesItems}
-                                </div>
-                                <p>苦手食材</p>
+                                </div>     
+                                <p>除外苦手食材</p>                      
                                 <div className="tags">
                                     {foodstuffItems}
                                 </div>
-                                <p>利用シーン</p>
+                                <p>除外利用シーン</p>
                                 <div className="tags">
                                     {sceneItems}
                                 </div>
-                                <p>設備</p>
+                                <p>除外設備</p>
                                 <div className="tags">
                                     {facilityItems}
                                 </div>

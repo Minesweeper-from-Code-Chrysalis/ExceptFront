@@ -12,8 +12,8 @@
 }
 
 .map{
-  height: 20rem;
-  width: 30rem;
+  width: 97%;
+  height: 400px;
 }
 
 .singleShop-name{
@@ -22,7 +22,7 @@
 }
 
 .shop-photo{
-  width: 450px;
+  width: 50%;
   height: auto;
 }
 

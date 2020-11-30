@@ -1,7 +1,10 @@
 .search-page {
-  height: 410px;
+  margin-bottom: 50px;
   font-family: "Meiryo";
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -12,12 +15,8 @@
 }
 
 .search {
-  height:350px;
   width: 80%;
-  margin: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
+  max-width: 800px;
   background-color:rgba(255, 255, 255, 0.8);
 
 }
@@ -94,18 +93,20 @@
 }
 
 .word{
-  width:30%;
+  width:80%;
+  max-width: 500px;
   height:40px;
 }
 
 .area{
-  width:30%;
+  width:83%;
+  max-width: 500px;
   height:46px;
-  margin: -0.5px;
 }
 
 .budget{
-  width:29%;
+  width:30%;
+  max-width: 200px;
   height:46px;
   margin: -0.5px;
 }
