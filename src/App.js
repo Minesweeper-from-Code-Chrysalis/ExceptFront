@@ -56,7 +56,7 @@ function App() {
         setSelectedShop={setSelectedShop}
         />
       )}
-      <div id="page_top"><a href="#">a</a></div>
+      <div id="page_top"><a href="#"><i/></a></div>
     </div>
   );
 }
