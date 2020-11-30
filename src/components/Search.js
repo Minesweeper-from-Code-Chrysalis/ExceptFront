@@ -180,8 +180,16 @@ export default function Search(props) {
     });
     const [exceptWord, setExceptWord] = useState("");
     const [areaCode, setAreaCode] = useState("");
+    const [lowBudget, setLowBudget] = useState(0);
+    const [highBudget, setHighBudget] = useState(999999);
     const [keyword, setKeyword] = useState("");
     const { allShops, setAllShops, setCurrentView } = props;
+    const budgetList = [500,800,1000,1500,2000,3000,4000,5000,7000,10000,20000,30000];
+    const pullDownBudget=[];
+    pullDownBudget.push(<option key="指定なし">指定なし</option>);
+    Object.entries(budgetList).map(([key, value]) => {
+        return pullDownBudget.push(<option key={key}>{value}</option>);
+    });
 
     const baseUrl = "https://api.except-app.com/shops";
 
@@ -194,9 +202,8 @@ export default function Search(props) {
     Object.entries(sceneState).map(([key, value]) => {
         return sceneItems.push(
             <FormControlLabel
-                control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} key={key} />}
+                control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} />}
                 label={value.word}
-                key={key}
             />
         );
     });
@@ -207,9 +214,8 @@ export default function Search(props) {
     Object.entries(allergiesState).map(([key, value]) => {
         return allergiesItems.push(
             <FormControlLabel
-                control={<BlackCheckbox checked={value.check} onChange={allergiesHandleChange} id={key} name={value.word} key={key} />}
+                control={<BlackCheckbox checked={value.check} onChange={allergiesHandleChange} id={key} name={value.word} />}
                 label={value.word}
-                key={key}
             />
         );
     });
@@ -220,9 +226,8 @@ export default function Search(props) {
     Object.entries(foodstuffState).map(([key, value]) => {
         return foodstuffItems.push(
             <FormControlLabel
-                control={<BlackCheckbox checked={value.check} onChange={foodstuffHandleChange} id={key} name={value.word} key={key} />}
+                control={<BlackCheckbox checked={value.check} onChange={foodstuffHandleChange} id={key} name={value.word} />}
                 label={value.word}
-                key={key}
             />
         );
     });
@@ -233,9 +238,8 @@ export default function Search(props) {
     Object.entries(facilityState).map(([key, value]) => {
         return facilityItems.push(
             <FormControlLabel
-                control={<BlackCheckbox checked={value.check} onChange={facilityHandleChange} id={key} name={value.word} key={key} />}
+                control={<BlackCheckbox checked={value.check} onChange={facilityHandleChange} id={key} name={value.word} />}
                 label={value.word}
-                key={key}
             />
         );
     });
@@ -301,7 +305,9 @@ export default function Search(props) {
     });
 
 
-
+    console.log(lowBudget);
+    
+    console.log(highBudget);
 
     return (
         <div className="search-page">
@@ -335,6 +341,43 @@ export default function Search(props) {
                             }}
                         />
 
+                    </div>
+                    <div className="key">
+                    <select
+                            className="budget"
+                            onChange={(e) => {
+                                Object.entries(budgetList).map(([, value]) => {
+                                    if (Number(value) === Number(e.target.value)){
+                                        return setLowBudget(value);
+                                    }
+                                    if (String(e.target.value) === "指定なし"){
+                                        return setLowBudget(0);
+                                    }
+                                    return null;
+                                });
+                            }}
+                        >
+                            <option hidden>予算下限</option>
+                            {pullDownBudget}
+                        </select>
+                        ～
+                        <select
+                            className="budget"
+                            onChange={(e) => {
+                                Object.entries(budgetList).map(([, value]) => {
+                                    if (Number(value) === Number(e.target.value)){
+                                        return setHighBudget(value);
+                                    }
+                                    if (String(e.target.value) === "指定なし"){
+                                        return setHighBudget(999999);
+                                    }
+                                    return null;
+                                });
+                            }}
+                        >
+                            <option hidden>予算上限</option>
+                            {pullDownBudget}
+                        </select>
                     </div>
                     <div>
                         <p>

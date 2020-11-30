@@ -33,6 +33,7 @@ export default function AllShops(props) {
             最寄り駅：{shop.access.line}
             {shop.access.station}
           </p>
+          <p>予算：{shop.budget}</p>
         </section>
       </div>
     );

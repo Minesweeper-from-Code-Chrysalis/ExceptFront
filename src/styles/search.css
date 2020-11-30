@@ -1,5 +1,5 @@
 .search-page {
-  height: 450px;
+  height: 410px;
   font-family: "Meiryo";
   width: 100%;
 
@@ -12,7 +12,7 @@
 }
 
 .search {
-  height:295px;
+  height:350px;
   width: 80%;
   margin: auto;
   position: absolute;
@@ -95,12 +95,18 @@
 
 .word{
   width:30%;
-  height:50px;
+  height:40px;
 }
 
 .area{
   width:30%;
-  height:56px;
+  height:46px;
+  margin: -0.5px;
+}
+
+.budget{
+  width:29%;
+  height:46px;
   margin: -0.5px;
 }
 
