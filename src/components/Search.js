@@ -84,7 +84,7 @@ export default function Search(props) {
             check: false
         },
         sceneCheckedC: {
-            word: "子連れ",
+            word: "子供連れ",
             check: false
         },
         sceneCheckedD: {
@@ -247,16 +247,18 @@ export default function Search(props) {
         setFacilityState({ ...facilityState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
     };
     facilityItems = [];
+    console.log(facilityItems);
     Object.entries(facilityState).map(([key, value]) => {
         
         return facilityItems.push(
             <FormControlLabel
                 control={<BlackCheckbox checked={value.check} onChange={facilityHandleChange} id={key} name={value.word} />}
                 label={value.word}
-                key={key}
+
             />
         );
     });
+    console.log(facilityItems);
 
     if (allShops[0]) {
         if (countAfter !== allShops[0].length) {

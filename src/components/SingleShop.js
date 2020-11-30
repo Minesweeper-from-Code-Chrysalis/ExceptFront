@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/singleShop.css";
+import Button from '@material-ui/core/Button';
+
 
 export default function SingleShop(props) {
   const { selectedShop, setSelectedShop, setCurrentView } = props;
@@ -13,7 +15,10 @@ export default function SingleShop(props) {
     longitude}`;
   return (
     <div className="single-shop-page">
+
+      <div className="single-shop-info">
       <div className="back">
+      <Button variant="outlined" color="primary">
         <font
           className="back-to-list"
           role="presentation"
@@ -27,10 +32,12 @@ export default function SingleShop(props) {
           }}
         >
           {" "}
+          <b>
           一覧に戻る
+          </b>
         </font>
+      </Button>
       </div>
-      <div className="single-shop-info">
         <p className="singleShop-name">{selectedShop.name}</p>
         <p className="category">{selectedShop.category}</p>
         <p className="pr_short">{selectedShop.pr.pr_short}</p>
@@ -40,25 +47,25 @@ export default function SingleShop(props) {
           alt="shop_image"
         />
 
-        <table className="table" border="1">
+        <table>
           <tr>
-            <td className="td_column">店舗名</td>
-            <td className="table-td"><a href={selectedShop.url} target="_blank" rel="noreferrer">{selectedShop.name}</a></td>
+            <th>店舗名</th>
+            <td><a href={selectedShop.url} target="_blank" rel="noreferrer">{selectedShop.name}</a></td>
           </tr>
           <tr>
-            <td className="td_column">電話番号</td>
-            <td className="table-td">{selectedShop.tel}</td>
+            <th>電話番号</th>
+            <td>{selectedShop.tel}</td>
           </tr>
           <tr>
-            <td className="td_column">住所</td>
-            <td className="table-td">
+            <th>住所</th>
+            <td>
               <p>{selectedShop.address}</p>
               <iframe title="map" className="map" src={mapUrl} />
             </td>
           </tr>
           <tr>
-            <td className="td_column">アクセス</td>
-            <td className="table-td">
+            <th>アクセス</th>
+            <td>
               {selectedShop.access.line}
               {selectedShop.access.station}
               {selectedShop.access.station_exit}徒歩
@@ -66,12 +73,12 @@ export default function SingleShop(props) {
             </td>
           </tr>
           <tr>
-            <td className="td_column">営業時間</td>
-            <td className="table-td">{selectedShop.opentime}</td>
+            <th>営業時間</th>
+            <td>{selectedShop.opentime}</td>
           </tr>
           <tr>
-            <td className="td_column">店舗から</td>
-            <td className="table-td">{selectedShop.pr.pr_long}</td>
+            <th>店舗から</th>
+            <td>{selectedShop.pr.pr_long}</td>
           </tr>
         </table>
       </div>
