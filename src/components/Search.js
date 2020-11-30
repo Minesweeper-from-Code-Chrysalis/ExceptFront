@@ -26,8 +26,8 @@ const BlackCheckbox = withStyles({
 
 const Accordion = withStyles({
     root: {
-        backgroundColor: "rgba(255, 255, 255, 0.5)",
-        border: '1px solid rgba(0, 0, 0, .125)',
+        backgroundColor: "rgba(255, 255, 255, 0)",
+        border: '1px solid rgba(0, 0, 0, 0)',
         boxShadow: 'none',
         '&:not(:last-child)': {
             borderBottom: 0,
@@ -45,7 +45,7 @@ const Accordion = withStyles({
 const AccordionSummary = withStyles({
     root: {
         backgroundColor: "rgba(0, 0, 0, 0)",
-        borderBottom: "1px solid rgba(0, 0, 0, .125)",
+        borderBottom: "1px solid rgba(0, 0, 0, 0)",
         marginBottom: -1,
         minHeight: 56,
         "&$expanded": {
@@ -62,8 +62,9 @@ const AccordionSummary = withStyles({
 
 const AccordionDetails = withStyles((theme) => ({
     root: {
-        backgroundColor: "rgba(255, 255, 255, 1)",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
         padding: theme.spacing(2),
+        borderRadius: "0px 0px 20px 20px",
     },
 }))(MuiAccordionDetails);
 
@@ -426,7 +427,7 @@ export default function Search(props) {
                 </form>
 
             </div>
-            <div className="search">
+            <div className="accordion">
                 <Accordion>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}

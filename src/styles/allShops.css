@@ -11,12 +11,12 @@
   font-size: 15px;
   margin: 5px;
   color: #2c2c2f;    
-  background-color:rgba(255, 255, 255, 0.8);
+  background-color:rgba(255, 255, 255, 1);
   cursor: pointer;
   box-sizing: border-box;
   flex-basis: 400px;
   flex-grow: 100px;
-  
+  border-radius: 10px;
 }
 
 .shop-photos{
