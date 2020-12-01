@@ -39,10 +39,12 @@ function App() {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        Supported by
-        <Link color="inherit" href="https://api.gnavi.co.jp/api/scope/" target="_blank">
-          ぐるなびWebService
-        </Link>
+        <Typography variant="body2" color="textSecondary" align="center">
+          Supported by
+          <Link color="inherit" href="https://api.gnavi.co.jp/api/scope/" target="_blank">
+            ぐるなびWebService
+          </Link>
+        </Typography>
       </Grid>
     </Grid>
   );
