@@ -28,12 +28,10 @@ const BlackCheckbox = withStyles({
 const Accordion = withStyles({
   root: {
     backgroundColor: "rgba(255, 255, 255, 0)",
-    border: "1px solid rgba(0, 0, 0, 0)",
+    borderTop: "1px solid rgba(55, 55, 55, 0.3)",
+    borderBottom: "1px solid rgba(55, 55, 55, 0.3)",
     boxShadow: "none",
     borderRadius: 0,
-    "&:not(:last-child)": {
-      borderBottom: 0,
-    },
     "&:before": {
       display: "none",
     },
@@ -427,7 +425,7 @@ export default function Search(props) {
           <Box className="accordion" display="block" justifyContent="center" textAlign="center">
             <Accordion
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
                 borderRadius: 0,
               }}
             >
