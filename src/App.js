@@ -26,7 +26,15 @@ function App() {
       {String(currentView).valueOf() === "AllShops" && <AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
       {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
       {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}
-      <Grid id="page_top" item xs={12}>
+      <Grid
+        id="page_top"
+        item
+        xs={12}
+        style={{
+          marginBottom: "10px",
+          marginRight: "10px",
+        }}
+      >
         <a href="#">
           <i />
         </a>
