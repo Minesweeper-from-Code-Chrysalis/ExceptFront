@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Grid } from "@material-ui/core";
 import { useMediaQuery } from 'react-responsive'
+import { Grid, Typography, Link } from "@material-ui/core";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
@@ -41,17 +41,33 @@ function App() {
   return (
     <div>
     <Desktop>
-    <Grid container spacing={10} className="App">
-      <NavBar setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
-      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} />}
+    <Grid container alignItems="center" className="App">
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
+        <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
+      )}
       {String(currentView).valueOf() === "AllShops" && <AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
       {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
       {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}
-      <div id="page_top">
+      <Grid id="page_top" item xs={12}>
         <a href="#">
           <i />
         </a>
-      </div>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright © Teleto"}
+          {new Date().getFullYear()}
+          {"."}
+        </Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant="body2" color="textSecondary" align="center">
+          Supported by
+          <Link color="inherit" href="https://api.gnavi.co.jp/api/scope/" target="_blank">
+            ぐるなびWebService
+          </Link>
+        </Typography>
+      </Grid>
     </Grid>
     </Desktop>
     <Mobile>
