@@ -297,7 +297,6 @@ export default function Search(props) {
       }
       return null;
     });
-    console.log(tags);
 
     const replace = exceptWord.replace(/\s+/g, ",");
     let convertExcept = replace;
@@ -314,7 +313,6 @@ export default function Search(props) {
     if (keyword.length > 0) {
       url = `${url}&keyword=${encodeURIComponent(keyword)}`;
     }
-    console.log(url);
     const preData = await fetch(url);
     const result = await preData.status;
 
