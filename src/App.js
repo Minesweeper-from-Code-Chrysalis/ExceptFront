@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Grid } from "@material-ui/core";
 import Search from "./components/Search";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
 import SingleShop from "./components/SingleShop";
 import Error from "./components/Error";
@@ -21,8 +21,10 @@ function App() {
   }, [allShops.length, selectedShop]);
   return (
     <Grid container spacing={10} className="App">
-      <NavBar setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
-      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} />}
+      {/* <NavBar setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} /> */}
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
+        <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
+      )}
       {String(currentView).valueOf() === "AllShops" && <AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
       {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
       {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}

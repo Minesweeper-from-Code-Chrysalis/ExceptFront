@@ -25,11 +25,11 @@ export default function AllShops(props) {
           setSelectedShop(shop);
         }}
       >
-        <Card style={{ backgroundColor: "#EAECEE", height: "100%" }}>
+        <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%" }}>
           <CardContent>
-            <Typography variant="h6" component="h6" color="textSecondary">
+            {/* <Typography variant="h6" component="h6" color="textSecondary">
               {shop.category}
-            </Typography>
+            </Typography> */}
             <Typography variant="h5" component="h2" gutterBottom>
               {shop.name}
             </Typography>
@@ -56,7 +56,7 @@ export default function AllShops(props) {
       container
       spacing={5}
       style={{
-        backgroundColor: "#fff",
+        backgroundColor: "#252627",
       }}
     >
       <Grid item xs={2} />

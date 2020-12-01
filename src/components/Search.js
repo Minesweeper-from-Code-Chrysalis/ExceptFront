@@ -13,6 +13,7 @@ import { indigo } from "@material-ui/core/colors";
 import Grid from "@material-ui/core/Grid";
 import SearchIcon from "@material-ui/icons/Search";
 import areaList from "../data/area.json";
+import Icon from "../images/except.png";
 
 const BlackCheckbox = withStyles({
   root: {
@@ -181,7 +182,7 @@ export default function Search(props) {
   const [lowerBudget, setLowerBudget] = useState(0);
   const [upperBudget, setUpperBudget] = useState(999999);
   const [keyword, setKeyword] = useState("");
-  const { allShops, setAllShops, setCurrentView } = props;
+  const { allShops, setAllShops, setSelectedShop, setCurrentView } = props;
   const budgetList = [500, 800, 1000, 1500, 2000, 3000, 4000, 5000, 7000, 10000, 20000, 30000];
   const pullDownBudget = [];
   pullDownBudget.push(<MenuItem key="指定なし">指定なし</MenuItem>);
@@ -353,175 +354,205 @@ export default function Search(props) {
   });
 
   return (
-    <Grid item xs={12} className="search-page">
-      <Container maxWidth="md">
-        <Box
-          display="flex"
-          justifyContent="center"
-          className="search"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.95)",
-            borderRadius: "20px 20px 0 0",
-          }}
-        >
-          <form
-            className="search-form"
+    <>
+      <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff" }}>
+        <Grid item xs={4} />
+        <Grid container item justify="center" alignItems="center" xs={4}>
+          <img
+            src={Icon}
+            width="60%"
+            alt="icon"
+            role="presentation"
+            onClick={() => {
+              setAllShops([]);
+              setSelectedShop();
+              setCurrentView("Search");
+            }}
+            onKeyDown={() => {
+              setAllShops([]);
+              setSelectedShop();
+              setCurrentView("Search");
+            }}
+          />
+        </Grid>
+        {/* <button className = "login-button">Login</button> */}
+        <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
+          <a href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
+            <img src="https://api.gnavi.co.jp/api/img/credit/api_155_20.gif" alt="グルメ情報検索サイトぐるなび" />
+          </a>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className="search-page">
+        <Container maxWidth="md">
+          <Box
+            display="flex"
+            justifyContent="center"
+            className="search"
             style={{
-              width: "50%",
+              backgroundColor: "rgba(255, 255, 255, 0.95)",
+              borderRadius: "20px 20px 0 0",
             }}
           >
-            <Box className="key" display="block" justifyContent="center" my={3}>
-              <TextField
-                id="area-field"
-                select
-                label="検索エリアを選択"
-                variant="outlined"
-                onChange={(e) => {
-                  Object.entries(areaList).map(([, value]) => {
-                    if (value.areaname_l === e.target.value) return setAreaCode(value.areacode_l);
-                    return null;
-                  });
-                }}
-                required
-                fullWidth
-              >
-                {pullDownTag}
-              </TextField>
-            </Box>
-            <Box className="key" display="block" my={3}>
-              <TextField
-                className="word"
-                label="除外ワードを入力"
-                type="search"
-                variant="outlined"
-                onChange={(e) => {
-                  setExceptWord(e.target.value);
-                }}
-                fullWidth
-              />
-            </Box>
-
-            <Box display="block" textAlign="center">
-              <Button
-                color="primary"
-                variant="contained"
-                className="submit-button"
-                size="large"
-                startIcon={<SearchIcon />}
-                onClick={() => {
-                  getAllShops();
-                }}
-              >
-                お店を検索
-              </Button>
-            </Box>
-            <Box className="result-count" display="block" textAlign="right" my={3}>
-              検索結果 <font size="6">{countBefore}</font>件{countBefore === 100 && <font>以上</font>}
-            </Box>
-          </form>
-        </Box>
-
-        <Box className="accordion" display="block" justifyContent="center" textAlign="center">
-          <Accordion
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.9)",
-              borderRadius: "0px 0px 20px 20px",
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+            <form
+              className="search-form"
               style={{
-                fontSize: "20px",
-                textAlign: "center",
+                width: "50%",
               }}
             >
-              詳細条件
-            </AccordionSummary>
-            <AccordionDetails
+              <Box className="key" display="block" justifyContent="center" my={3}>
+                <TextField
+                  id="area-field"
+                  select
+                  label="検索エリアを選択"
+                  variant="outlined"
+                  onChange={(e) => {
+                    Object.entries(areaList).map(([, value]) => {
+                      if (value.areaname_l === e.target.value) return setAreaCode(value.areacode_l);
+                      return null;
+                    });
+                  }}
+                  required
+                  fullWidth
+                >
+                  {pullDownTag}
+                </TextField>
+              </Box>
+              <Box className="key" display="block" my={3}>
+                <TextField
+                  className="word"
+                  label="除外ワードを入力"
+                  type="search"
+                  variant="outlined"
+                  onChange={(e) => {
+                    setExceptWord(e.target.value);
+                  }}
+                  fullWidth
+                />
+              </Box>
+
+              <Box display="block" textAlign="center">
+                <Button
+                  color="primary"
+                  variant="contained"
+                  className="submit-button"
+                  size="large"
+                  startIcon={<SearchIcon />}
+                  onClick={() => {
+                    getAllShops();
+                  }}
+                >
+                  お店を検索
+                </Button>
+              </Box>
+              <Box className="result-count" display="block" textAlign="right" my={3}>
+                検索結果 <font size="6">{countBefore}</font>件{countBefore === 100 && <font>以上</font>}
+              </Box>
+            </form>
+          </Box>
+
+          <Box className="accordion" display="block" justifyContent="center" textAlign="center">
+            <Accordion
               style={{
-                display: "inline",
-                width: "100%",
-                textAlign: "center",
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                borderRadius: "0px 0px 20px 20px",
               }}
             >
-              <div className="except">
-                <div className="key">
-                  通常検索ワード：
-                  <TextField
-                    className="word"
-                    label="検索ワードを入力"
-                    placeholder="検索ワードを入力"
-                    variant="outlined"
-                    onChange={(e) => {
-                      setKeyword(e.target.value);
-                    }}
-                  />
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                style={{
+                  fontSize: "20px",
+                  textAlign: "center",
+                }}
+              >
+                詳細条件
+              </AccordionSummary>
+              <AccordionDetails
+                style={{
+                  display: "inline",
+                  width: "100%",
+                  textAlign: "center",
+                  backgroundColor: "rgba(255, 255, 255, 0.95)",
+                }}
+              >
+                <div className="except">
+                  <div className="key">
+                    通常検索ワード：
+                    <TextField
+                      className="word"
+                      label="検索ワードを入力"
+                      placeholder="検索ワードを入力"
+                      variant="outlined"
+                      onChange={(e) => {
+                        setKeyword(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="key">
+                    予算：
+                    <TextField
+                      className="budget"
+                      select
+                      onChange={(e) => {
+                        Object.entries(budgetList).map(([, value]) => {
+                          if (Number(value) === Number(e.target.value)) {
+                            return setLowerBudget(value);
+                          }
+                          if (String(e.target.value) === "指定なし") {
+                            return setLowerBudget(0);
+                          }
+                          return null;
+                        });
+                      }}
+                    >
+                      <MenuItem hidden>下限</MenuItem>
+                      {pullDownBudget}
+                    </TextField>
+                    ～
+                    <TextField
+                      className="budget"
+                      select
+                      onChange={(e) => {
+                        Object.entries(budgetList).map(([, value]) => {
+                          if (Number(value) === Number(e.target.value)) {
+                            return setUpperBudget(value);
+                          }
+                          if (String(e.target.value) === "指定なし") {
+                            return setUpperBudget(999999);
+                          }
+                          return null;
+                        });
+                      }}
+                    >
+                      <MenuItem hidden>上限</MenuItem>
+                      {pullDownBudget}
+                    </TextField>
+                  </div>
+                  <hr width="95%" />
+                  <FormGroup>
+                    <p>除外アレルギー食材</p>
+                    <div className="tags">{allergiesItems}</div>
+                    <p>除外苦手食材</p>
+                    <div className="tags">{foodstuffItems}</div>
+                    <p>除外利用シーン</p>
+                    <div className="tags">{sceneItems}</div>
+                    <p>除外設備</p>
+                    <div className="tags">{facilityItems}</div>
+                  </FormGroup>
                 </div>
-                <div className="key">
-                  予算：
-                  <TextField
-                    className="budget"
-                    select
-                    onChange={(e) => {
-                      Object.entries(budgetList).map(([, value]) => {
-                        if (Number(value) === Number(e.target.value)) {
-                          return setLowerBudget(value);
-                        }
-                        if (String(e.target.value) === "指定なし") {
-                          return setLowerBudget(0);
-                        }
-                        return null;
-                      });
-                    }}
-                  >
-                    <MenuItem hidden>下限</MenuItem>
-                    {pullDownBudget}
-                  </TextField>
-                  ～
-                  <TextField
-                    className="budget"
-                    select
-                    onChange={(e) => {
-                      Object.entries(budgetList).map(([, value]) => {
-                        if (Number(value) === Number(e.target.value)) {
-                          return setUpperBudget(value);
-                        }
-                        if (String(e.target.value) === "指定なし") {
-                          return setUpperBudget(999999);
-                        }
-                        return null;
-                      });
-                    }}
-                  >
-                    <MenuItem hidden>上限</MenuItem>
-                    {pullDownBudget}
-                  </TextField>
-                </div>
-                <hr width="95%" />
-                <FormGroup>
-                  <p>除外アレルギー食材</p>
-                  <div className="tags">{allergiesItems}</div>
-                  <p>除外苦手食材</p>
-                  <div className="tags">{foodstuffItems}</div>
-                  <p>除外利用シーン</p>
-                  <div className="tags">{sceneItems}</div>
-                  <p>除外設備</p>
-                  <div className="tags">{facilityItems}</div>
-                </FormGroup>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </Box>
-      </Container>
-    </Grid>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
+        </Container>
+      </Grid>
+    </>
   );
 }
 
 Search.propTypes = {
   allShops: PropTypes.string.isRequired,
   setAllShops: PropTypes.func.isRequired,
+  setSelectedShop: PropTypes.func.isRequired,
   setCurrentView: PropTypes.func.isRequired,
 };
