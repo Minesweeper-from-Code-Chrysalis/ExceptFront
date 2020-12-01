@@ -31,20 +31,33 @@ function App() {
           <i />
         </a>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} style={{ marginTop: "10px" }}>
         <Typography variant="body2" color="textSecondary" align="center">
           {"Copyright © Teleto"}
           {new Date().getFullYear()}
           {"."}
         </Typography>
       </Grid>
-      <Grid item xs={12} container direction="row" justify="center">
-        <Typography variant="body2" color="textSecondary">
-          Supported by
-          <Link href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noreferrer">
-            ぐるなびWebService
-          </Link>
-        </Typography>
+      <Grid
+        item
+        xs={12}
+        container
+        direction="row"
+        justify="center"
+        style={{
+          marginBottom: "10px",
+          color: "rgba(0, 0, 0, 0.54)",
+          fontSize: "0.875rem",
+          fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
+          fontWeight: "400",
+          lineFeight: "1.43",
+          letterSpacing: "0.01071em",
+        }}
+      >
+        Supported by
+        <Link href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noreferrer">
+          ぐるなびWebService
+        </Link>
       </Grid>
     </Grid>
   );

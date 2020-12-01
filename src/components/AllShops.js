@@ -10,57 +10,111 @@ export default function AllShops(props) {
   const items = [];
   const { allShops, setSelectedShop } = props;
 
-  Object.entries(allShops[0]).map(([key, value]) => {
-    const shop = value;
-    console.log(allShops);
-    return items.push(
-      <Grid
-        item
-        sm={12}
-        md={4}
-        className="shop"
-        key={key}
-        role="presentation"
-        onClick={() => {
-          setSelectedShop(shop);
-        }}
-        onKeyDown={() => {
-          setSelectedShop(shop);
-        }}
-      >
-        <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%" }}>
-          <CardMedia style={{ height: 200 }} image={!shop.image_url.shop_image1 ? NoImage : shop.image_url.shop_image1} title="shop_image" />
+  if (allShops[0].length) {
+    Object.entries(allShops[0]).map(([key, value]) => {
+      const shop = value;
+      return items.push(
+        <Grid
+          item
+          container
+          xs={12}
+          sm={6}
+          md={6}
+          lg={4}
+          xl={4}
+          className="shop"
+          key={key}
+          direction="row"
+          justify="center"
+          alignItems="stretch"
+          role="presentation"
+          onClick={() => {
+            setSelectedShop(shop);
+          }}
+          onKeyDown={() => {
+            setSelectedShop(shop);
+          }}
+        >
+          <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%", width: "100%" }}>
+            <CardMedia style={{ height: 200 }} image={!shop.image_url.shop_image1 ? NoImage : shop.image_url.shop_image1} title="shop_image" />
+            <CardContent>
+              <Typography variant="h5" component="h2" gutterBottom noWrap>
+                {shop.name}
+              </Typography>
+              <Grid container direction="row" justify="center" spacing={3}>
+                <Grid
+                  item
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <TrainIcon
+                    style={{
+                      marginRight: "5px",
+                    }}
+                  />
+                  {shop.access.station}
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <DirectionsWalkIcon
+                    style={{
+                      marginRight: "5px",
+                    }}
+                  />
+                  {shop.access.walk}
+                  {"分"}
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <MonetizationOnIcon
+                    style={{
+                      marginRight: "5px",
+                    }}
+                  />
+                  {shop.budget}円
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+      );
+    });
+  } else {
+    items.push(
+      <Grid item container xs={12} className="shop" direction="row" justify="center" alignItems="center" role="presentation">
+        <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%", width: "100%" }}>
           <CardContent>
-            <Typography variant="h5" component="h2" gutterBottom noWrap>
-              {shop.name}
+            <Typography variant="h5" component="h2">
+              検索結果がありません
             </Typography>
-            <Grid container direction="row" alignItems="center" justify="center" spacing={5}>
-              <Grid item>
-                <TrainIcon />
-                {shop.access.station}
-              </Grid>
-              <Grid item>
-                <DirectionsWalkIcon />
-                {shop.access.walk}
-                {"分"}
-              </Grid>
-              <Grid item>
-                <MonetizationOnIcon />
-                {shop.budget}円
-              </Grid>
-            </Grid>
           </CardContent>
         </Card>
       </Grid>
     );
-  });
+    return items;
+  }
 
   return (
     <Grid
       container
       style={{
         backgroundColor: "#252627",
-        padding: "30px 0",
+        padding: "30px",
       }}
     >
       <Grid item md={2} />
