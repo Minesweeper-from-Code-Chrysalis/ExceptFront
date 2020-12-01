@@ -16,7 +16,7 @@ body::before {
   left:0;
   z-index:-1;
   height:100vh;
-  background: url('./images/restaurant.jpg') no-repeat center;
+  background: url('./images/back.jpg') no-repeat center;
   background-size: cover;
   width: 100%;
 }

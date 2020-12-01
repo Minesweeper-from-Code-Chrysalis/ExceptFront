@@ -30,6 +30,7 @@ const Accordion = withStyles({
     backgroundColor: "rgba(255, 255, 255, 0)",
     border: "1px solid rgba(0, 0, 0, 0)",
     boxShadow: "none",
+    borderRadius: 0,
     "&:not(:last-child)": {
       borderBottom: 0,
     },
@@ -65,7 +66,6 @@ const AccordionDetails = withStyles((theme) => ({
   root: {
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     padding: theme.spacing(2),
-    borderRadius: "0px 0px 20px 20px",
   },
 }))(MuiAccordionDetails);
 
@@ -182,7 +182,7 @@ export default function Search(props) {
   const [lowerBudget, setLowerBudget] = useState(0);
   const [upperBudget, setUpperBudget] = useState(999999);
   const [keyword, setKeyword] = useState("");
-  const { allShops, setAllShops, setSelectedShop, setCurrentView } = props;
+  const { allShops, setAllShops, setCurrentView } = props;
   const budgetList = [500, 800, 1000, 1500, 2000, 3000, 4000, 5000, 7000, 10000, 20000, 30000];
   const pullDownBudget = [];
   pullDownBudget.push(<MenuItem key="指定なし">指定なし</MenuItem>);
@@ -357,24 +357,7 @@ export default function Search(props) {
     <>
       <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff" }}>
         <Grid item xs={4} />
-        <Grid container item justify="center" alignItems="center" xs={4}>
-          <img
-            src={Icon}
-            width="60%"
-            alt="icon"
-            role="presentation"
-            onClick={() => {
-              setAllShops([]);
-              setSelectedShop();
-              setCurrentView("Search");
-            }}
-            onKeyDown={() => {
-              setAllShops([]);
-              setSelectedShop();
-              setCurrentView("Search");
-            }}
-          />
-        </Grid>
+
         {/* <button className = "login-button">Login</button> */}
         <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
           <a href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
@@ -389,16 +372,26 @@ export default function Search(props) {
             justifyContent="center"
             className="search"
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.95)",
+              backgroundColor: "rgba(255, 255, 255, 0.9)",
               borderRadius: "20px 20px 0 0",
             }}
           >
             <form
               className="search-form"
               style={{
+                marginTop: "20px",
                 width: "50%",
               }}
             >
+              <img
+                src={Icon}
+                style={{
+                  width: "100%",
+                  maxWidth: "300px",
+                }}
+                alt="icon"
+                role="presentation"
+              />
               <Box className="key" display="block" justifyContent="center" my={3}>
                 <TextField
                   id="area-field"
@@ -429,32 +422,14 @@ export default function Search(props) {
                   fullWidth
                 />
               </Box>
-
-              <Box display="block" textAlign="center">
-                <Button
-                  color="primary"
-                  variant="contained"
-                  className="submit-button"
-                  size="large"
-                  startIcon={<SearchIcon />}
-                  onClick={() => {
-                    getAllShops();
-                  }}
-                >
-                  お店を検索
-                </Button>
-              </Box>
-              <Box className="result-count" display="block" textAlign="right" my={3}>
-                検索結果 <font size="6">{countBefore}</font>件{countBefore === 100 && <font>以上</font>}
-              </Box>
             </form>
           </Box>
 
           <Box className="accordion" display="block" justifyContent="center" textAlign="center">
             <Accordion
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.9)",
-                borderRadius: "0px 0px 20px 20px",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                borderRadius: 0,
               }}
             >
               <AccordionSummary
@@ -473,62 +448,80 @@ export default function Search(props) {
                   display: "inline",
                   width: "100%",
                   textAlign: "center",
-                  backgroundColor: "rgba(255, 255, 255, 0.95)",
+                  backgroundColor: "rgba(255, 255, 255, 0)",
                 }}
               >
+
                 <div className="except">
-                  <div className="key">
-                    通常検索ワード：
+                  <form
+                    className="search-form"
+                    style={{
+                      marginTop: "20px",
+                      width: "50%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                  >
+                    <div className="key">
+                      <TextField
+                        className="word"
+                        label="通常検索ワードを入力"
+                        placeholder="通常検索ワードを入力"
+                        variant="outlined"
+                        onChange={(e) => {
+                          setKeyword(e.target.value);
+                        }}
+                        fullWidth
+                      />
+                    </div>
+                    <div className="key">
+                      <Box style={{ margin: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <TextField
+                          className="budget"
+                          select
+                          label="予算下限"
+                          onChange={(e) => {
+                            Object.entries(budgetList).map(([, value]) => {
+                              if (Number(value) === Number(e.target.value)) {
+                                return setLowerBudget(value);
+                              }
+                              if (String(e.target.value) === "指定なし") {
+                                return setLowerBudget(0);
+                              }
+                              return null;
+                            });
+                          }}
+                          style={{
+                            width: "30%",
+                          }}
+                        >
+                          {pullDownBudget}
+                        </TextField>
+                      ～
                     <TextField
-                      className="word"
-                      label="検索ワードを入力"
-                      placeholder="検索ワードを入力"
-                      variant="outlined"
-                      onChange={(e) => {
-                        setKeyword(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="key">
-                    予算：
-                    <TextField
-                      className="budget"
-                      select
-                      onChange={(e) => {
-                        Object.entries(budgetList).map(([, value]) => {
-                          if (Number(value) === Number(e.target.value)) {
-                            return setLowerBudget(value);
-                          }
-                          if (String(e.target.value) === "指定なし") {
-                            return setLowerBudget(0);
-                          }
-                          return null;
-                        });
-                      }}
-                    >
-                      <MenuItem hidden>下限</MenuItem>
-                      {pullDownBudget}
-                    </TextField>
-                    ～
-                    <TextField
-                      className="budget"
-                      select
-                      onChange={(e) => {
-                        Object.entries(budgetList).map(([, value]) => {
-                          if (Number(value) === Number(e.target.value)) {
-                            return setUpperBudget(value);
-                          }
-                          if (String(e.target.value) === "指定なし") {
-                            return setUpperBudget(999999);
-                          }
-                          return null;
-                        });
-                      }}
-                    >
-                      <MenuItem hidden>上限</MenuItem>
-                      {pullDownBudget}
-                    </TextField>
-                  </div>
+                          className="budget"
+                          select
+                          label="予算上限"
+                          onChange={(e) => {
+                            Object.entries(budgetList).map(([, value]) => {
+                              if (Number(value) === Number(e.target.value)) {
+                                return setUpperBudget(value);
+                              }
+                              if (String(e.target.value) === "指定なし") {
+                                return setUpperBudget(999999);
+                              }
+                              return null;
+                            });
+                          }}
+                          style={{
+                            width: "30%",
+                          }}
+                        >
+                          {pullDownBudget}
+                        </TextField>
+                      </Box>
+                    </div>
+                  </form>
                   <hr width="95%" />
                   <FormGroup>
                     <p>除外アレルギー食材</p>
@@ -543,6 +536,44 @@ export default function Search(props) {
                 </div>
               </AccordionDetails>
             </Accordion>
+            <Box
+              display="flex"
+              justifyContent="center"
+              className="search"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                borderRadius: "0px 0px 20px 20px",
+              }}
+            >
+              <form
+                className="search-form"
+                style={{
+                  marginTop: "20px",
+                  width: "50%",
+                }}
+
+              >
+                <Box display="block" textAlign="center">
+                  <Button
+                    style={{
+                      backgroundColor: "white",
+                    }}
+                    variant="contained"
+                    className="submit-button"
+                    size="large"
+                    startIcon={<SearchIcon />}
+                    onClick={() => {
+                      getAllShops();
+                    }}
+                  >
+                    お店を検索
+                </Button>
+                </Box>
+                <Box className="result-count" display="block" textAlign="right" my={3}>
+                  検索結果 <font size="6">{countBefore}</font>件{countBefore === 100 && <font>以上</font>}
+                </Box>
+              </form>
+            </Box>
           </Box>
         </Container>
       </Grid>
@@ -553,6 +584,5 @@ export default function Search(props) {
 Search.propTypes = {
   allShops: PropTypes.string.isRequired,
   setAllShops: PropTypes.func.isRequired,
-  setSelectedShop: PropTypes.func.isRequired,
   setCurrentView: PropTypes.func.isRequired,
 };
