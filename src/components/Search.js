@@ -353,16 +353,7 @@ export default function Search(props) {
 
   return (
     <>
-      <Grid container item xs={12} direction="row" justify="center">
-        <Grid item xs={4} />
-        {/* <button className = "login-button">Login</button> */}
-        <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
-          <a href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
-            <img src="https://api.gnavi.co.jp/api/img/credit/api_155_20.gif" alt="グルメ情報検索サイトぐるなび" />
-          </a>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className="search-page">
+      <Grid item xs={12} className="search-page" style={{margin: "50px"}}>
         <Container maxWidth="md">
           <Box
             display="flex"

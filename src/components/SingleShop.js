@@ -26,9 +26,14 @@ export default function SingleShop(props) {
       spacing={5}
       style={{
         backgroundColor: "#252627",
+        
       }}>
       <div className="single-shop-page">
-        <div className="single-shop-info">
+        <div className="single-shop-info"       
+          style={{
+            marginTop: "50px",
+            marginBottom: "50px"
+        }}>
           <div className="back">
             <ColorButton variant="outlined">
               <font
