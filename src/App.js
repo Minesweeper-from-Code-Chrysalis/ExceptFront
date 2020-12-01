@@ -71,9 +71,10 @@ function App() {
     </Grid>
     </Desktop>
     <Mobile>
-    <Grid container spacing={10} className="App">
-      <NavBar setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
-      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} />}
+    <Grid container alignItems="center" className="App">
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
+        <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
+      )}
       {String(currentView).valueOf() === "AllShops" && <Mb_AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
       {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
       {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}

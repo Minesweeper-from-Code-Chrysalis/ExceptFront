@@ -4,6 +4,7 @@ import { Card, CardContent, CardMedia, Grid, Typography } from "@material-ui/cor
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TrainIcon from "@material-ui/icons/Train";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     height: 100,
-    width: 101,
+    width: 100,
   },
   controls: {
     // display: 'flex',
@@ -58,22 +59,34 @@ export default function AllShops(props) {
           <CardMedia className={classes.cover} image={shop.image_url.shop_image1} title="shop_image" />
           <div className={classes.details}>
           <CardContent className={classes.content}>
-            <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '12rem'}}> 
-            <Typography variant="body2" component="body2" noWrap>
+            <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '14rem'}}> 
+            <Typography variant="body2" component="body2" 
+            // noWrap
+            >
               {shop.name}
             </Typography>
-            </div>
-            {/* <Grid container direction="row" alignItems="center" justify="center" spacing={5}> */}
-              {/* <Grid item>
-                <TrainIcon />
-                {shop.access.line}
+            <Grid container direction="row" alignItems="center" justify="left" spacing={0}>
+              <Grid item>
+                <TrainIcon fontSize="small"/>
+              </Grid>
+              <Grid>
                 {shop.access.station}
               </Grid>
               <Grid item>
-                <MonetizationOnIcon />
+                <DirectionsWalkIcon fontSize="small" />
+              </Grid>
+              <Grid>
+                {shop.access.walk}
+                {"分"}
+              </Grid>
+              <Grid item>
+                <MonetizationOnIcon fontSize="small" />
+              </Grid>
+              <Grid>
                 {shop.budget}円
-              </Grid> */}
-            {/* </Grid> */}
+              </Grid>
+            </Grid>
+            </div>
           </CardContent>
           </div>
         </Card>
@@ -82,19 +95,17 @@ export default function AllShops(props) {
   });
 
   return (
-    <Grid
-      container
-      spacing={5}
-      style={{
-        backgroundColor: "#252627",
-      }}
-    >
-      <Grid item xs={2} />
-      <Grid container item xs={10} spacing={2} justify="center">
+    // <Grid
+    //   container
+    //   spacing={10}
+    //   style={{
+    //     backgroundColor: "#252627",
+    //   }}
+    // >
+      <Grid container item xs={10} justify="center" style={{ backgroundColor: "#252627"}}>
         {items}
       </Grid>
-      <Grid item xs={2} />
-    </Grid>
+    // </Grid>
   );
 }
 
