@@ -58,13 +58,14 @@ export default function AllShops(props) {
       container
       style={{
         backgroundColor: "#252627",
+        padding: "30px 0",
       }}
     >
-      <Grid item xs={2} />
-      <Grid container item xs={8} spacing={5} justify="center">
+      <Grid item md={2} />
+      <Grid container item md={8} spacing={5} justify="center">
         {items}
       </Grid>
-      <Grid item xs={2} />
+      <Grid item md={2} />
     </Grid>
   );
 }
