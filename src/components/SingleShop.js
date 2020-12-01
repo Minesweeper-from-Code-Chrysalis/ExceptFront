@@ -4,8 +4,8 @@ import "../styles/singleShop.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-
 import { withStyles } from "@material-ui/core/styles";
+import NoImage from "../images/no_image.png";
 
 const ColorButton = withStyles(() => ({
   root: {
@@ -31,11 +31,13 @@ export default function SingleShop(props) {
       }}
     >
       <div className="single-shop-page">
-        <div className="single-shop-info"       
+        <div
+          className="single-shop-info"
           style={{
             marginTop: "50px",
-            marginBottom: "50px"
-        }}>
+            marginBottom: "50px",
+          }}
+        >
           <div className="back">
             <ColorButton variant="outlined">
               <font
@@ -57,7 +59,7 @@ export default function SingleShop(props) {
           <p className="singleShop-name">{selectedShop.name}</p>
           <p className="category">{selectedShop.category}</p>
           <p className="pr_short">{selectedShop.pr.pr_short}</p>
-          <img className="shop-photo" src={selectedShop.image_url.shop_image1} alt="shop_image" />
+          <img className="shop-photo" src={!selectedShop.image_url.shop_image1 ? NoImage : selectedShop.image_url.shop_image1} alt="shop_image" />
 
           <table>
             <tr>
@@ -87,7 +89,7 @@ export default function SingleShop(props) {
             <tr>
               <th>リンク</th>
               <td>
-                <Link color="inherit" href={selectedShop.url} target="_blank">
+                <Link color="inherit" href={selectedShop.url} target="_blank" rel="noreferrer">
                   ぐるなびのページを見る
                 </Link>
               </td>

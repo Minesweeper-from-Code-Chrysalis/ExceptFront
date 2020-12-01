@@ -38,10 +38,10 @@ function App() {
           {"."}
         </Typography>
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="body2" color="textSecondary" align="center">
+      <Grid item xs={12} container direction="row" justify="center">
+        <Typography variant="body2" color="textSecondary">
           Supported by
-          <Link color="inherit" href="https://api.gnavi.co.jp/api/scope/" target="_blank">
+          <Link href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noreferrer">
             ぐるなびWebService
           </Link>
         </Typography>

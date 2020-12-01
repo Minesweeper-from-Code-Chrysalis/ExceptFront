@@ -4,6 +4,7 @@ import { Card, CardContent, CardMedia, Grid, Typography } from "@material-ui/cor
 import TrainIcon from "@material-ui/icons/Train";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import NoImage from "../images/no_image.png";
 
 export default function AllShops(props) {
   const items = [];
@@ -11,6 +12,7 @@ export default function AllShops(props) {
 
   Object.entries(allShops[0]).map(([key, value]) => {
     const shop = value;
+    console.log(allShops);
     return items.push(
       <Grid
         item
@@ -27,7 +29,7 @@ export default function AllShops(props) {
         }}
       >
         <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%" }}>
-          <CardMedia style={{ height: 200 }} image={shop.image_url.shop_image1} title="shop_image" />
+          <CardMedia style={{ height: 200 }} image={!shop.image_url.shop_image1 ? NoImage : shop.image_url.shop_image1} title="shop_image" />
           <CardContent>
             <Typography variant="h5" component="h2" gutterBottom noWrap>
               {shop.name}
