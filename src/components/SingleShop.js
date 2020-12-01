@@ -28,13 +28,8 @@ export default function SingleShop(props) {
       spacing={5}
       style={{
         backgroundColor: "#252627",
-<<<<<<< HEAD
-        
-      }}>
-=======
       }}
     >
->>>>>>> dev
       <div className="single-shop-page">
         <div className="single-shop-info"       
           style={{

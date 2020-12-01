@@ -353,11 +353,7 @@ export default function Search(props) {
 
   return (
     <>
-<<<<<<< HEAD
       <Grid item xs={12} className="search-page" style={{margin: "50px"}}>
-=======
-      <Grid item xs={12} className="search-page">
->>>>>>> dev
         <Container maxWidth="md">
           <Box
             display="flex"
