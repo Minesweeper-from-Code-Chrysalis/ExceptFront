@@ -353,7 +353,7 @@ export default function Search(props) {
 
   return (
     <>
-      <Grid item xs={12} className="search-page" style={{margin: "50px"}}>
+      <Grid item xs={12} className="search-page" style={{marginTop: "50px", marginBottom: "50px"}}>
         <Container maxWidth="md">
           <Box
             display="flex"
@@ -368,7 +368,7 @@ export default function Search(props) {
               className="search-form"
               style={{
                 marginTop: "20px",
-                width: "50%",
+                width: "90%",
               }}
             >
               <img
@@ -393,7 +393,10 @@ export default function Search(props) {
                     });
                   }}
                   required
-                  fullWidth
+                  style={{
+                    maxWidth: "500px",
+                    width: "100%",
+                  }}
                 >
                   {pullDownTag}
                 </TextField>
@@ -407,7 +410,10 @@ export default function Search(props) {
                   onChange={(e) => {
                     setExceptWord(e.target.value);
                   }}
-                  fullWidth
+                  style={{
+                    maxWidth: "500px",
+                    width: "100%",
+                  }}
                 />
               </Box>
             </form>
@@ -444,7 +450,7 @@ export default function Search(props) {
                     className="search-form"
                     style={{
                       marginTop: "20px",
-                      width: "50%",
+                      width: "90%",
                       marginLeft: "auto",
                       marginRight: "auto",
                     }}
@@ -458,11 +464,14 @@ export default function Search(props) {
                         onChange={(e) => {
                           setKeyword(e.target.value);
                         }}
-                        fullWidth
+                        style={{
+                          maxWidth: "500px",
+                          width: "100%",
+                        }}
                       />
                     </div>
                     <div className="key">
-                      <Box style={{ margin: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      <Box style={{ margin: "20px", display: "flex", justifyContent: "center", alignItems: "baseline" }}>
                         <TextField
                           className="budget"
                           select
@@ -479,7 +488,7 @@ export default function Search(props) {
                             });
                           }}
                           style={{
-                            width: "30%",
+                            width: "40%",
                           }}
                         >
                           {pullDownBudget}
@@ -501,7 +510,7 @@ export default function Search(props) {
                             });
                           }}
                           style={{
-                            width: "30%",
+                            width: "40%",
                           }}
                         >
                           {pullDownBudget}
@@ -536,7 +545,8 @@ export default function Search(props) {
                 className="search-form"
                 style={{
                   marginTop: "20px",
-                  width: "50%",
+                  width: "90%",
+                  maxWidth: "500px",
                 }}
               >
                 <Box display="block" textAlign="center">
