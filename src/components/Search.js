@@ -355,9 +355,8 @@ export default function Search(props) {
 
   return (
     <>
-      <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff" }}>
+      <Grid container item xs={12} direction="row" justify="center">
         <Grid item xs={4} />
-
         {/* <button className = "login-button">Login</button> */}
         <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
           <a href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
@@ -451,7 +450,6 @@ export default function Search(props) {
                   backgroundColor: "rgba(255, 255, 255, 0)",
                 }}
               >
-
                 <div className="except">
                   <form
                     className="search-form"
@@ -497,8 +495,8 @@ export default function Search(props) {
                         >
                           {pullDownBudget}
                         </TextField>
-                      ～
-                    <TextField
+                        ～
+                        <TextField
                           className="budget"
                           select
                           label="予算上限"
@@ -551,7 +549,6 @@ export default function Search(props) {
                   marginTop: "20px",
                   width: "50%",
                 }}
-
               >
                 <Box display="block" textAlign="center">
                   <Button
@@ -567,7 +564,7 @@ export default function Search(props) {
                     }}
                   >
                     お店を検索
-                </Button>
+                  </Button>
                 </Box>
                 <Box className="result-count" display="block" textAlign="right" my={3}>
                   検索結果 <font size="6">{countBefore}</font>件{countBefore === 100 && <font>以上</font>}
