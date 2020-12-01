@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Card, CardContent, CardMedia, Grid, Typography } from "@material-ui/core";
 import TrainIcon from "@material-ui/icons/Train";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 
 export default function AllShops(props) {
   const items = [];
@@ -26,15 +27,20 @@ export default function AllShops(props) {
         }}
       >
         <Card style={{ color: "#fff", backgroundColor: "#383737", height: "100%" }}>
+          <CardMedia style={{ height: 200 }} image={shop.image_url.shop_image1} title="shop_image" />
           <CardContent>
-            <Typography variant="h5" component="h2" gutterBottom>
+            <Typography variant="h5" component="h2" gutterBottom noWrap>
               {shop.name}
             </Typography>
             <Grid container direction="row" alignItems="center" justify="center" spacing={5}>
               <Grid item>
                 <TrainIcon />
-                {shop.access.line}
                 {shop.access.station}
+              </Grid>
+              <Grid item>
+                <DirectionsWalkIcon />
+                {shop.access.walk}
+                {"分"}
               </Grid>
               <Grid item>
                 <MonetizationOnIcon />
@@ -42,7 +48,6 @@ export default function AllShops(props) {
               </Grid>
             </Grid>
           </CardContent>
-          <CardMedia style={{ height: 200 }} image={shop.image_url.shop_image1} title="shop_image" />
         </Card>
       </Grid>
     );
