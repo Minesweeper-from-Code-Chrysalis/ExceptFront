@@ -24,12 +24,6 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
     width: 100,
   },
-  controls: {
-    // display: 'flex',
-    // alignItems: 'center',
-    // paddingLeft: theme.spacing(1),
-    // paddingBottom: theme.spacing(1),
-  }
 }));
 
 export default function AllShops(props) {
@@ -53,13 +47,13 @@ export default function AllShops(props) {
         onKeyDown={() => {
           setSelectedShop(shop);
         }}
+        style={{paddingBottom: "4px"}}
       >
-        {/* <Card className={classes.root} > */}
-        <Card className={classes.root} style={{ backgroundColor: "#383737", height: "100%" }}>
+        <Card className={classes.root} style={{ backgroundColor: "#383737", height: "100%"}}>
           <CardMedia className={classes.cover} image={shop.image_url.shop_image1} title="shop_image" />
           <div className={classes.details}>
           <CardContent className={classes.content}>
-            <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '14rem'}}> 
+            <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '14rem', fontSize: 12}}> 
             <Typography variant="body2" component="body2" 
             // noWrap
             >
@@ -95,17 +89,11 @@ export default function AllShops(props) {
   });
 
   return (
-    // <Grid
-    //   container
-    //   spacing={10}
-    //   style={{
-    //     backgroundColor: "#252627",
-    //   }}
-    // >
-      <Grid container item xs={10} justify="center" style={{ backgroundColor: "#252627"}}>
+   <div style={{padding:"5px", backgroundColor: "#252627"}}>
+      <Grid container item xs={12} justify="center">
         {items}
       </Grid>
-    // </Grid>
+    </div>
   );
 }
 
