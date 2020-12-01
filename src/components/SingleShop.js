@@ -3,6 +3,18 @@ import PropTypes from "prop-types";
 import "../styles/singleShop.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import {withStyles} from "@material-ui/core/styles";
+
+const ColorButton = withStyles(() => ({
+  root: {
+    borderColor: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#252627"
+
+
+    }
+  }
+}))(Button);
 
 export default function SingleShop(props) {
   const { selectedShop, setSelectedShop, setCurrentView } = props;
@@ -10,11 +22,15 @@ export default function SingleShop(props) {
   const { longitude } = selectedShop;
   const mapUrl = `https://maps.google.co.jp/maps?output=embed&q=${latitude},${longitude}`;
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12}
+      spacing={5}
+      style={{
+        backgroundColor: "#252627",
+      }}>
       <div className="single-shop-page">
         <div className="single-shop-info">
           <div className="back">
-            <Button variant="outlined" color="primary">
+            <ColorButton variant="outlined">
               <font
                 className="back-to-list"
                 role="presentation"
@@ -29,7 +45,7 @@ export default function SingleShop(props) {
               >
                 <b>一覧に戻る</b>
               </font>
-            </Button>
+            </ColorButton>
           </div>
           <p className="singleShop-name">{selectedShop.name}</p>
           <p className="category">{selectedShop.category}</p>
@@ -38,23 +54,12 @@ export default function SingleShop(props) {
 
           <table>
             <tr>
-              <th>店舗名</th>
-              <td>
-                <a href={selectedShop.url} target="_blank" rel="noreferrer">
-                  {selectedShop.name}
-                </a>
-              </td>
+              <th>営業時間</th>
+              <td>{selectedShop.opentime}</td>
             </tr>
             <tr>
               <th>電話番号</th>
               <td>{selectedShop.tel}</td>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <td>
-                <p>{selectedShop.address}</p>
-                <iframe title="map" className="map" src={mapUrl} />
-              </td>
             </tr>
             <tr>
               <th>アクセス</th>
@@ -66,12 +71,19 @@ export default function SingleShop(props) {
               </td>
             </tr>
             <tr>
-              <th>営業時間</th>
-              <td>{selectedShop.opentime}</td>
+              <th>住所</th>
+              <td>
+                <p>{selectedShop.address}</p>
+                <iframe title="map" className="map" src={mapUrl} />
+              </td>
             </tr>
             <tr>
-              <th>店舗から</th>
-              <td>{selectedShop.pr.pr_long}</td>
+              <th>URL</th>
+              <td>
+                <a href={selectedShop.url} target="_blank" rel="noreferrer">
+                  {selectedShop.url}
+                </a>
+              </td>
             </tr>
           </table>
         </div>
