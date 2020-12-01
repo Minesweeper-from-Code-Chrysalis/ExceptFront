@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import "../styles/singleShop.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import {withStyles} from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
+
+import { withStyles } from "@material-ui/core/styles";
 
 const ColorButton = withStyles(() => ({
   root: {
     borderColor: "#ffffff",
     "&:hover": {
-      backgroundColor: "#252627"
-
-
-    }
-  }
+      backgroundColor: "#252627",
+    },
+  },
 }))(Button);
 
 export default function SingleShop(props) {
@@ -22,11 +22,14 @@ export default function SingleShop(props) {
   const { longitude } = selectedShop;
   const mapUrl = `https://maps.google.co.jp/maps?output=embed&q=${latitude},${longitude}`;
   return (
-    <Grid item xs={12}
+    <Grid
+      item
+      xs={12}
       spacing={5}
       style={{
         backgroundColor: "#252627",
-      }}>
+      }}
+    >
       <div className="single-shop-page">
         <div className="single-shop-info">
           <div className="back">
@@ -78,11 +81,11 @@ export default function SingleShop(props) {
               </td>
             </tr>
             <tr>
-              <th>URL</th>
+              <th>リンク</th>
               <td>
-                <a href={selectedShop.url} target="_blank" rel="noreferrer">
-                  {selectedShop.url}
-                </a>
+                <Link color="inherit" href={selectedShop.url} target="_blank">
+                  ぐるなびのページを見る
+                </Link>
               </td>
             </tr>
           </table>
