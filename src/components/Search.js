@@ -297,20 +297,13 @@ export default function Search(props) {
       }
       return null;
     });
-    Object.entries(facilityState).map(([, value]) => {
-      if (value.check === true) {
-        if (tags !== "") {
-          tags = `${tags},${value.word}`;
-        } else {
-          tags = value.word;
-        }
-      }
-      return null;
-    });
     console.log(tags);
 
     const replace = exceptWord.replace(/\s+/g, ",");
-    let convertExcept = `${replace},${tags}`;
+    let convertExcept = replace;
+    if(tags !== ""){
+      convertExcept = `${convertExcept},${tags}`
+    }
     if (convertExcept[0] === ",") {
       convertExcept = convertExcept.substring(1);
     }
@@ -321,7 +314,7 @@ export default function Search(props) {
     if (keyword.length > 0) {
       url = `${url}&keyword=${encodeURIComponent(keyword)}`;
     }
-
+    console.log(url);
     const preData = await fetch(url);
     const result = await preData.status;
 
