@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import './App.css';
+import "./App.css";
+import { Grid } from "@material-ui/core";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
@@ -11,53 +12,26 @@ function App() {
   const [allShops, setAllShops] = useState([]);
   const [selectedShop, setSelectedShop] = useState();
 
-
   useEffect(() => {
     if (selectedShop !== undefined) {
       setCurrentView("SingleShop");
     } else if (allShops.length > 0) {
-      setCurrentView("AllShops")
+      setCurrentView("AllShops");
     }
   }, [allShops.length, selectedShop]);
   return (
-    
-    <div className="App">
-
-      <NavBar
-        setCurrentView={setCurrentView}
-        setAllShops={setAllShops}
-        setSelectedShop={setSelectedShop}
-      />
-      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
-        <Search
-          setCurrentView={setCurrentView}
-          allShops={allShops}
-          setAllShops={setAllShops}
-        />
-      )}
-      {String(currentView).valueOf() === "AllShops" && (
-        <AllShops
-          setCurrentView={setCurrentView}
-          allShops={allShops}
-          setSelectedShop={setSelectedShop}
-        />
-      )}
-      {String(currentView).valueOf() === "SingleShop" && (
-        <SingleShop
-          selectedShop={selectedShop}
-          setSelectedShop={setSelectedShop}
-          setCurrentView={setCurrentView}
-        />
-      )}
-       {String(currentView).valueOf() === "Error" && (
-        <Error
-        setCurrentView={setCurrentView}
-        setAllShops={setAllShops}
-        setSelectedShop={setSelectedShop}
-        />
-      )}
-      <div id="page_top"><a href="#"><i/></a></div>
-    </div>
+    <Grid container spacing={10} className="App">
+      <NavBar setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} />}
+      {String(currentView).valueOf() === "AllShops" && <AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
+      {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
+      {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}
+      <div id="page_top">
+        <a href="#">
+          <i />
+        </a>
+      </div>
+    </Grid>
   );
 }
 

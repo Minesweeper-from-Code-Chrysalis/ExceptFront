@@ -1,4 +1,4 @@
-.search-page {
+/* .search-page {
   margin-bottom: 50px;
   font-family: "Meiryo";
   width: 100%;
@@ -35,20 +35,20 @@
   font-weight:bold;
   padding: 0.2em;
   margin: 0em 0em;
-  /* color: black;
+  color: black;
   text-align: left;
   border-left: solid 5px black;
-  box-shadow: 0 3px 5px black; */
+  box-shadow: 0 3px 5px black;
 }
 
 .key{
   font-weight:bold;
   padding: 0.2em;
   margin: 1em 1em;
-  /* color: black;
+  color: black;
   text-align: left;
   border-left: solid 5px  black;
-  box-shadow: 0 3px 5px black; */
+  box-shadow: 0 3px 5px black;
 }
 
 .submit-button{
@@ -148,4 +148,4 @@
 .tags {
   margin-left: auto;
   margin-right: auto;
-}
+} */

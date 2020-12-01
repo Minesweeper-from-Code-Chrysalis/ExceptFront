@@ -1,6 +1,8 @@
 import React from "react";
-import "../styles/allShops.css";
 import PropTypes from "prop-types";
+import { Card, CardContent, CardMedia, Grid, Typography } from "@material-ui/core";
+import TrainIcon from "@material-ui/icons/Train";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 
 export default function AllShops(props) {
   const items = [];
@@ -9,7 +11,11 @@ export default function AllShops(props) {
   Object.entries(allShops[0]).map(([key, value]) => {
     const shop = value;
     return items.push(
-      <div
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
         className="shop"
         key={key}
         role="presentation"
@@ -20,29 +26,46 @@ export default function AllShops(props) {
           setSelectedShop(shop);
         }}
       >
-        <section className="table-font">
-          <p className="shop-name">{shop.name}</p>
-          <img
-            className="shop-photos"
-            src={shop.image_url.shop_image1}
-            alt="shop_image"
-          />
-          
-          <p className="genre">ジャンル：{shop.category}</p>
-          <p>
-            最寄り駅：{shop.access.line}
-            {shop.access.station}
-          </p>
-          <p>予算：{shop.budget}</p>
-        </section>
-      </div>
+        <Card style={{ backgroundColor: "#EAECEE", height: "100%" }}>
+          <CardContent>
+            <Typography variant="h6" component="h6" color="textSecondary">
+              {shop.category}
+            </Typography>
+            <Typography variant="h5" component="h2" gutterBottom>
+              {shop.name}
+            </Typography>
+            <Grid container direction="row" alignItems="center" justify="center" spacing={5}>
+              <Grid item>
+                <TrainIcon />
+                {shop.access.line}
+                {shop.access.station}
+              </Grid>
+              <Grid item>
+                <MonetizationOnIcon />
+                {shop.budget}円
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardMedia style={{ height: 200 }} image={shop.image_url.shop_image1} title="shop_image" />
+        </Card>
+      </Grid>
     );
   });
 
   return (
-    <div className="flex-container">
-      {items}
-    </div>
+    <Grid
+      container
+      spacing={5}
+      style={{
+        backgroundColor: "#fff",
+      }}
+    >
+      <Grid item xs={2} />
+      <Grid container item xs={8} spacing={5} justify="center">
+        {items}
+      </Grid>
+      <Grid item xs={2} />
+    </Grid>
   );
 }
 
