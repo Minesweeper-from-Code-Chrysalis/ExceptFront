@@ -300,12 +300,13 @@ export default function Search(props) {
 
     const replace = exceptWord.replace(/\s+/g, ",");
     let convertExcept = replace;
-    if(tags !== ""){
-      convertExcept = `${convertExcept},${tags}`
+    if (tags !== "") {
+      convertExcept = `${convertExcept},${tags}`;
     }
     if (convertExcept[0] === ",") {
       convertExcept = convertExcept.substring(1);
     }
+
     if (convertExcept !== "") {
       url = `${url}&exceptWord=${encodeURIComponent(convertExcept)}`;
     }
@@ -313,6 +314,7 @@ export default function Search(props) {
     if (keyword.length > 0) {
       url = `${url}&keyword=${encodeURIComponent(keyword)}`;
     }
+
     const preData = await fetch(url);
     const result = await preData.status;
 
@@ -344,7 +346,7 @@ export default function Search(props) {
 
   return (
     <>
-      <Grid item xs={12} className="search-page" style={{marginTop: "50px", marginBottom: "50px"}}>
+      <Grid item xs={12} className="search-page" style={{ marginTop: "50px", marginBottom: "50px" }}>
         <Container maxWidth="md">
           <Box
             display="flex"
