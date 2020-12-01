@@ -247,7 +247,6 @@ export default function Search(props) {
         setFacilityState({ ...facilityState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
     };
     facilityItems = [];
-    console.log(facilityItems);
     Object.entries(facilityState).map(([key, value]) => {
         
         return facilityItems.push(
@@ -258,7 +257,6 @@ export default function Search(props) {
             />
         );
     });
-    console.log(facilityItems);
 
     if (allShops[0]) {
         if (countAfter !== allShops[0].length) {
