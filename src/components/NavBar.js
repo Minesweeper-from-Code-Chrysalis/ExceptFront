@@ -6,7 +6,7 @@ import Icon from "../images/except.png";
 export default function NavBar(props) {
   const { setAllShops, setSelectedShop, setCurrentView } = props;
   return (
-    <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff", height: "15%" }}>
+    <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff" }}>
       <Grid item xs={4} />
       <Grid container item justify="center" alignItems="center" xs={4}>
         <img

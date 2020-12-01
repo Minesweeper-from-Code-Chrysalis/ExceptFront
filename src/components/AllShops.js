@@ -13,8 +13,7 @@ export default function AllShops(props) {
     return items.push(
       <Grid
         item
-        xs={12}
-        sm={6}
+        sm={12}
         md={4}
         className="shop"
         key={key}

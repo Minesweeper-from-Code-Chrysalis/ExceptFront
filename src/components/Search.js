@@ -69,9 +69,9 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails);
 
 export default function Search(props) {
-  const sceneItems = [];
-  const allergiesItems = [];
-  const foodstuffItems = [];
+  let sceneItems = [];
+  let allergiesItems = [];
+  let foodstuffItems = [];
   const facilityItems = [];
   const [sceneState, setSceneState] = React.useState({
     sceneCheckedA: {
@@ -83,7 +83,7 @@ export default function Search(props) {
       check: false,
     },
     sceneCheckedC: {
-      word: "子連れ",
+      word: "子供連れ",
       check: false,
     },
     sceneCheckedD: {
@@ -178,8 +178,8 @@ export default function Search(props) {
   const [exceptWord, setExceptWord] = useState("");
   //   const [exceptTag, setExceptTag] = useState("");
   const [areaCode, setAreaCode] = useState("");
-  const [lowBudget, setLowBudget] = useState(0);
-  const [highBudget, setHighBudget] = useState(999999);
+  const [lowerBudget, setLowerBudget] = useState(0);
+  const [upperBudget, setUpperBudget] = useState(999999);
   const [keyword, setKeyword] = useState("");
   const { allShops, setAllShops, setCurrentView } = props;
   const budgetList = [500, 800, 1000, 1500, 2000, 3000, 4000, 5000, 7000, 10000, 20000, 30000];
@@ -201,6 +201,7 @@ export default function Search(props) {
   const handleChange = (event) => {
     setSceneState({ ...sceneState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
   };
+  sceneItems = [];
   Object.entries(sceneState).map(([key, value]) => {
     return sceneItems.push(<FormControlLabel control={<BlackCheckbox checked={value.check} onChange={handleChange} id={key} name={value.word} />} label={value.word} key={key} />);
   });
@@ -208,6 +209,7 @@ export default function Search(props) {
   const allergiesHandleChange = (event) => {
     setAllergiesState({ ...allergiesState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
   };
+  allergiesItems = [];
   Object.entries(allergiesState).map(([key, value]) => {
     return allergiesItems.push(<FormControlLabel control={<BlackCheckbox checked={value.check} onChange={allergiesHandleChange} id={key} name={value.word} />} label={value.word} key={key} />);
   });
@@ -215,6 +217,7 @@ export default function Search(props) {
   const foodstuffHandleChange = (event) => {
     setFoodstuffState({ ...foodstuffState, [event.target.id]: { word: event.target.name, check: event.target.checked } });
   };
+  foodstuffItems = [];
   Object.entries(foodstuffState).map(([key, value]) => {
     return foodstuffItems.push(<FormControlLabel control={<BlackCheckbox checked={value.check} onChange={foodstuffHandleChange} id={key} name={value.word} />} label={value.word} key={key} />);
   });
@@ -253,7 +256,7 @@ export default function Search(props) {
   }
 
   const getAllShops = async () => {
-    let url = `${baseUrl}?areaCode=${areaCode}`;
+    let url = `${baseUrl}?areaCode=${areaCode}&lowerBudget=${lowerBudget}&upperBudget=${upperBudget}`;
     let tags = "";
     Object.entries(sceneState).map(([, value]) => {
       if (value.check === true) {
@@ -295,14 +298,31 @@ export default function Search(props) {
       }
       return null;
     });
+    Object.entries(facilityState).map(([, value]) => {
+      if (value.check === true) {
+        if (tags !== "") {
+          tags = `${tags},${value.word}`;
+        } else {
+          tags = value.word;
+        }
+      }
+      return null;
+    });
     console.log(tags);
 
-    if (exceptWord.length > 0) {
-      url = `${url}&exceptWord=${encodeURIComponent(exceptWord)}`;
+    const replace = exceptWord.replace(/\s+/g, ",");
+    let convertExcept = `${replace},${tags}`;
+    if (convertExcept[0] === ",") {
+      convertExcept = convertExcept.substring(1);
     }
+    if (convertExcept !== "") {
+      url = `${url}&exceptWord=${encodeURIComponent(convertExcept)}`;
+    }
+
     if (keyword.length > 0) {
       url = `${url}&keyword=${encodeURIComponent(keyword)}`;
     }
+
     const preData = await fetch(url);
     const result = await preData.status;
 
@@ -331,10 +351,6 @@ export default function Search(props) {
       </MenuItem>
     );
   });
-
-  console.log(lowBudget);
-
-  console.log(highBudget);
 
   return (
     <Grid item xs={12} className="search-page">
@@ -452,10 +468,10 @@ export default function Search(props) {
                     onChange={(e) => {
                       Object.entries(budgetList).map(([, value]) => {
                         if (Number(value) === Number(e.target.value)) {
-                          return setLowBudget(value);
+                          return setLowerBudget(value);
                         }
                         if (String(e.target.value) === "指定なし") {
-                          return setLowBudget(0);
+                          return setLowerBudget(0);
                         }
                         return null;
                       });
@@ -471,10 +487,10 @@ export default function Search(props) {
                     onChange={(e) => {
                       Object.entries(budgetList).map(([, value]) => {
                         if (Number(value) === Number(e.target.value)) {
-                          return setHighBudget(value);
+                          return setUpperBudget(value);
                         }
                         if (String(e.target.value) === "指定なし") {
-                          return setHighBudget(999999);
+                          return setUpperBudget(999999);
                         }
                         return null;
                       });

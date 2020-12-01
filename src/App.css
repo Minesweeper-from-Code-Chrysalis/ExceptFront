@@ -1,6 +1,6 @@
-/* .App {
+.App {
   text-align: center;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .footer {
@@ -77,4 +77,4 @@
   left: 0;
   margin: auto;
   text-align: center;
-} */
+}
