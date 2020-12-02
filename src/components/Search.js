@@ -324,7 +324,7 @@ export default function Search(props) {
       const data = await fetch(url).then((res) => res.json());
       setAllShops([data]);
     }
-  };
+};
 
   // Assume only the support area Tokyo
   const pullDownElements = areaList
