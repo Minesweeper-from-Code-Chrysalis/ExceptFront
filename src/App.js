@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { useMediaQuery } from 'react-responsive'
 import { Grid, Typography, Link } from "@material-ui/core";
 import Search from "./components/Search";
+// import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
+import MbAllShops from "./components/MbAllShops";
 import SingleShop from "./components/SingleShop";
 import Error from "./components/Error";
+
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  return isDesktop ? children : null
+}
+// const Tablet = ({ children }) => {
+//   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
+//   return isTablet ? children : null
+// }
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+  return isMobile ? children : null
+}
+// const Default = ({ children }) => {
+//   const isNotMobile = useMediaQuery({ minWidth: 768 })
+//   return isNotMobile ? children : null
+// }
 
 function App() {
   const [currentView, setCurrentView] = useState(["Search"]);
@@ -19,6 +39,8 @@ function App() {
     }
   }, [allShops.length, selectedShop]);
   return (
+    <div>
+    <Desktop>
     <Grid container alignItems="center" className="App">
       {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
         <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
@@ -60,6 +82,23 @@ function App() {
         </Link>
       </Grid>
     </Grid>
+    </Desktop>
+    <Mobile>
+    <Grid container alignItems="center" className="App">
+      {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
+        <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
+      )}
+      {String(currentView).valueOf() === "AllShops" && <MbAllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
+      {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
+      {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}
+      <div id="page_top">
+        <a href="#">
+          <i />
+        </a>
+      </div>
+    </Grid>
+    </Mobile>
+    </div>
   );
 }
 
