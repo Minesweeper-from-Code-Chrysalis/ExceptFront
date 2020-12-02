@@ -3,9 +3,9 @@ import "./App.css";
 import { useMediaQuery } from 'react-responsive'
 import { Grid, Typography, Link } from "@material-ui/core";
 import Search from "./components/Search";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import AllShops from "./components/AllShops";
-import Mb_AllShops from "./components/Mb_AllShops";
+import MbAllShops from "./components/MbAllShops";
 import SingleShop from "./components/SingleShop";
 import Error from "./components/Error";
 
@@ -75,7 +75,7 @@ function App() {
       {(String(currentView).valueOf() === "Search" || String(currentView).valueOf() === "AllShops") && (
         <Search setCurrentView={setCurrentView} allShops={allShops} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />
       )}
-      {String(currentView).valueOf() === "AllShops" && <Mb_AllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
+      {String(currentView).valueOf() === "AllShops" && <MbAllShops setCurrentView={setCurrentView} allShops={allShops} setSelectedShop={setSelectedShop} />}
       {String(currentView).valueOf() === "SingleShop" && <SingleShop selectedShop={selectedShop} setSelectedShop={setSelectedShop} setCurrentView={setCurrentView} />}
       {String(currentView).valueOf() === "Error" && <Error setCurrentView={setCurrentView} setAllShops={setAllShops} setSelectedShop={setSelectedShop} />}
       <div id="page_top">

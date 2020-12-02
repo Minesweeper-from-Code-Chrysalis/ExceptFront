@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, CardContent, CardMedia, Grid, Typography } from "@material-ui/core";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TrainIcon from "@material-ui/icons/Train";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
   },
@@ -26,9 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AllShops(props) {
+export default function MbAllShops(props) {
   const classes = useStyles();
-  const theme = useTheme();
   const items = [];
   const { allShops, setSelectedShop } = props;
 
@@ -97,7 +96,7 @@ export default function AllShops(props) {
   );
 }
 
-AllShops.propTypes = {
+MbAllShops.propTypes = {
   allShops: PropTypes.string.isRequired,
   setSelectedShop: PropTypes.func.isRequired,
 };
