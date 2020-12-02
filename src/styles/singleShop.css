@@ -1,21 +1,23 @@
 .back-to-list {
-  margin-left: 80%;
+  margin: auto;
   cursor: pointer;
-  color: whitesmoke;
+  color: white;
 }
-
 .single-shop-info {
-  background-color:rgba(255, 255, 255, 0.8);
+  background-color:#383737;
   width: 80%;
-  max-width: 800px;
+  max-width: 1100px;
   margin-left : auto ;
   margin-right : auto ;
-  padding: 5px;
+  padding: 15px;
+  padding-top: 20px;
+  border-radius: 10px;
+  color: white;
 }
 
 .map{
-  width: 97%;
-  height: 400px;
+  width: 90%;
+  height: 500px;
 }
 
 .singleShop-name{
@@ -26,30 +28,46 @@
 .shop-photo{
   width: 50%;
   height: auto;
+  margin: 20px;
 }
 
-.table{
-  margin-left : auto ;
-  margin-right : auto ;
-  width: 80%;
-  height: auto;
-  border:2;
 
-}
-
-.table-td{
-  overflow-wrap : break-word;
-  font-size: 13px;
-  text-align: left;
-  font-weight: bold;
-
-}
-
-.td_column{
-  width:100px;
-  font-weight: bold;
-}
 
 .category {
   font-weight: bold;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr{
+  border: solid 2px #252627;
+}
+
+table th{
+  position: relative;
+  text-align: left;
+  width: 10%;
+  max-width: 20px;
+  background-color: rgb(88, 88, 88);
+  color:white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+
+
+table td{
+  text-align: left;
+  width: 90%;
+  text-align: center;
+  background-color:#383737;
+  padding: 10px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: white;
+  display:block;
 }

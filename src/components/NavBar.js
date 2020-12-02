@@ -1,38 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../styles/navBar.css";
+import { Grid } from "@material-ui/core";
 import Icon from "../images/except.png";
-
 
 export default function NavBar(props) {
   const { setAllShops, setSelectedShop, setCurrentView } = props;
   return (
-    <div className="NavBar">
-      <div className="imgbox">
-      <img
-        className="icon"
-        src={Icon}
-        alt="icon"
-        role="presentation"
-        onClick={() => {
-          setAllShops([]);
-          setSelectedShop();
-          setCurrentView("Search");
-        }}
-        onKeyDown={() => {
-          setAllShops([]);
-          setSelectedShop();
-          setCurrentView("Search");
-        }}
-      />
-      </div>
+    <Grid container item xs={12} direction="row" justify="center" style={{ backgroundColor: "#fff" }}>
+      <Grid item xs={4} />
+      <Grid container item justify="center" alignItems="center" xs={4}>
+        <img
+          src={Icon}
+          width="60%"
+          alt="icon"
+          role="presentation"
+          onClick={() => {
+            setAllShops([]);
+            setSelectedShop();
+            setCurrentView("Search");
+          }}
+          onKeyDown={() => {
+            setAllShops([]);
+            setSelectedShop();
+            setCurrentView("Search");
+          }}
+        />
+      </Grid>
       {/* <button className = "login-button">Login</button> */}
-      <div className="gurunabi">
-        <a  href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer" >
-          <img src="https://api.gnavi.co.jp/api/img/credit/api_155_20.gif" width="90%" border="0" alt="グルメ情報検索サイト　ぐるなび"/>
+      <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
+        <a href="https://api.gnavi.co.jp/api/scope/" target="_blank" rel="noopener noreferrer">
+          <img src="https://api.gnavi.co.jp/api/img/credit/api_155_20.gif" alt="グルメ情報検索サイトぐるなび" />
         </a>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 
